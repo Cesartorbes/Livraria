@@ -34,7 +34,7 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index.php">
             <span>
               Mudar dps
             </span>
@@ -47,16 +47,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item active">
-                <a class="nav-link pl-lg-0" href="index.html">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link pl-lg-0" href="index.php">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html"> Sobre</a>
+                <a class="nav-link" href="about.php"> Sobre</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="categories.html">Categorias</a>
+                <a class="nav-link" href="categories.php">Categorias</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="entrar.html">Perfil</a>
+                <a class="nav-link" href="entrar.php">Perfil</a>
               </li>
             </ul>
             <from class="search_form">
@@ -103,7 +103,7 @@
                     <h1>
                      Autores populares!
                     </h1>
-                    <a href="autores.html">
+                    <a href="autores.php">
                       Ver mais
                     </a>
                   </div>
@@ -124,7 +124,7 @@
                     <h1>
                      Revenda de livros!
                     </h1>
-                    <a href="revenda.html">
+                    <a href="revenda.php">
                       Ver mais
                     </a>
                   </div>
@@ -175,7 +175,7 @@
                 <h5>
                   Autobiografia
                 </h5>
-                <a href="autobiografia.html">
+                <a href="categorias/autobiografia.php">
                   Ver mais
                 </a>
               </div>
@@ -190,7 +190,7 @@
                 <h5>
                   Ciência
                 </h5>
-                <a href="ciencia.html">
+                <a href="categorias/ciencia.php">
                   Ver mais
                 </a>
               </div>
@@ -205,7 +205,7 @@
                 <h5>
                   História
                 </h5>
-                <a href="historia.html">
+                <a href="categorias/historia.php">
                   Ver mais
                 </a>
               </div>
@@ -220,7 +220,7 @@
                 <h5>
                   Biografias
                 </h5>
-                <a href="biografias.html">
+                <a href="categorias/biografias.php">
                   Ver mais
                 </a>
               </div>
@@ -235,7 +235,7 @@
                 <h5>
                   Aventura
                 </h5>
-                <a href="aventura.html">
+                <a href="categorias/aventura.php">
                   Ver mais
                 </a>
               </div>
@@ -250,7 +250,7 @@
                 <h5>
                   Fantasia
                 </h5>
-                <a href="fantasia.html">
+                <a href="categorias/fantasia.php">
                   Ver mais
                 </a>
               </div>
@@ -265,7 +265,7 @@
                 <h5>
                   Romance
                 </h5>
-                <a href="romance.html">
+                <a href="categorias/romance.php">
                   Ver mais
                 </a>
               </div>
@@ -280,7 +280,7 @@
                 <h5>
                   Infantil
                 </h5>
-                <a href="infantil.html">
+                <a href="categorias/infantil.php">
                   Ver mais
                 </a>
               </div>
@@ -295,7 +295,7 @@
                 <h5>
                   Suspense
                 </h5>
-                <a href="suspense.html">
+                <a href="categorias/suspense.php">
                   Ver mais
                 </a>
               </div>

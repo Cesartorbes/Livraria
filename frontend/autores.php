@@ -34,7 +34,7 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index.php">
             <span>
               Mudar dps
             </span>
@@ -47,16 +47,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item ">
-                <a class="nav-link pl-lg-0" href="index.html">Home </a>
+                <a class="nav-link pl-lg-0" href="index.php">Home </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html"> Sobre</a>
+                <a class="nav-link" href="about.php"> Sobre</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="categories.html">Categorias <span class="sr-only">(current)</span> </a>
+                <a class="nav-link" href="categories.php">Categorias <span class="sr-only">(current)</span> </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="entrar.html">Perfil</a>
+                <a class="nav-link" href="entrar.php">Perfil</a>
               </li>
             </ul>
             <from class="search_form">
@@ -85,50 +85,50 @@
         </div>
         <div class="row">
           <div class="col-sm-6 col-md-4 ">
-            <div class="presetcategoria ">
-              <div class="presetcategoria2">
-                <img src="" alt="">
+            <div class="preset2 ">
+              <div class="preset">
+                <img src="images/autor1.jpg" alt="">
               </div>
-              <div class="detail-box1">
-               <!--  <h5>
+              <div class="detail-box">
+                <h5>
                   Stephen King (1947 - )
-                </h5>
+                </h4>
                 <h6>
                   It (1986)
                 </br>
                   The Shining (1977)
                 </br>
                   Carrie (1974)
-                </h6> -->
+                </h6>
               </div>
             </div>
           </div>
           <div class="col-sm-6 col-md-4 ">
-            <div class="presetcategoria ">
-              <div class="presetcategoria2">
-                <img src="" alt="">
+            <div class="preset2 ">
+              <div class="preset">
+                <img src="images/autor2.jpg" alt="">
               </div>
-              <div class="detail-box1">
-                <!-- <h5>
+              <div class="detail-box">
+                <h4>
                   Clarice Lispector (1920 - 1977)
-                </h5>
+                </h4>
                 <h6>
                   Perto do coração selvagem (1943)
                 </br>
                   Laços de família (1960)
                 </br>
                   A hora da estrela (1977)
-                </h6> -->
+                </h6>
               </div>
             </div>
           </div>
           <div class="col-sm-6 col-md-4 ">
-            <div class="presetcategoria ">
-              <div class="presetcategoria2">
-                <img src="" alt="">
+            <div class="preset2 ">
+              <div class="preset">
+                <img src="images/autor3.png" alt="">
               </div>
-              <div class="detail-box1">
-                <!-- <h5>
+              <div class="detail-box">
+                <h5>
                   J. K. Rowling (1965 - )
                 </h5>
                 <h6>
@@ -137,17 +137,17 @@
                   Animais Fantásticos e Onde Habitam (2001)
                 </br>
                   Morte súbita (2012)
-                </h6> -->
+                </h6>
               </div>
             </div>
           </div>
           <div class="col-sm-6 col-md-4 ">
-            <div class="presetcategoria ">
-              <div class="presetcategoria2">
-                <img src="" alt="">
+            <div class="preset2 ">
+              <div class="preset">
+                <img src="images/autor4.jpg" alt="">
               </div>
-              <div class="detail-box1">
-                <!-- <h5>
+              <div class="detail-box">
+                <h5>
                   Suzanne Collins (1962 - )
                 </h5>
                 <h6>
@@ -156,17 +156,17 @@
                   Em chamas (2009)
                 </br>
                   A esperança (2010)
-                </h6> -->
+                </h6>
               </div>
             </div>
           </div>
           <div class="col-sm-6 col-md-4 ">
-            <div class="presetcategoria ">
-              <div class="presetcategoria2">
-                <img src="" alt="">
+            <div class="preset2 ">
+              <div class="preset">
+                <img src="images/autor5.png" alt="">
               </div>
-              <div class="detail-box1">
-              <!--   <h5>
+              <div class="detail-box">
+                <h5>
                   J. R. R. Tolkien (1892 - 1973)
                 </h5>
                 <h6>
@@ -175,17 +175,17 @@
                   O Senhor dos Anéis (1954)
                 </br>
                   O Silmarillion (1977)
-                </h6> -->
+                </h6>
               </div>
             </div>
           </div>
           <div class="col-sm-6 col-md-4 ">
-            <div class="presetcategoria ">
-              <div class="presetcategoria2">
-                <img src="" alt="">
+            <div class="preset2 ">
+              <div class="preset">
+                <img src="images/autor6.jpg" alt="">
               </div>
-              <div class="detail-box1">
-                <!-- <h5>
+              <div class="detail-box">
+                <h5>
                   Fernando Pessoa (1888 - 1935)
                 </h5>
                 <h6>
@@ -194,7 +194,7 @@
                   Mensagem (1934)
                 </br>
                   O Guardador de Rebanhos (1925)
-                </h6> -->
+                </h6>
               </div>
             </div>
           </div>
@@ -209,8 +209,8 @@
           <div class="container ">
             <div class="row">
               <div class="col-md-6">
-                <div class="detail-box1">
-                <!--   <h5>
+                <div class="detail-box">
+                  <h5>
                     Autores da literatura brasileira
                   </h5>
                   <h1>
@@ -222,12 +222,12 @@
                     Alguma poesia (1930)
                   </br>
                     Sentimento do Mundo (1940)
-                  </h6> -->
+                  </h6>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="img-box">
-                  <img src="" alt="">
+                  <img src="images/teste.jpg" alt="">
                 </div>
               </div>
             </div>
@@ -237,8 +237,8 @@
           <div class="container ">
             <div class="row">
               <div class="col-md-6">
-                <div class="detail-box1">
-                  <!-- <h5>
+                <div class="detail-box">
+                  <h5>
                     Autores da literatura brasileira
                   </h5>
                   <h1>
@@ -250,12 +250,12 @@
                     Memórias Póstumas de Brás Cubas (1881)
                   </br>
                     O Alienista (1882)
-                  </h6> -->
+                  </h6>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="img-box">
-                  <img src="" alt="">
+                  <img src="images/teste2.png" alt="">
                 </div>
               </div>
             </div>
@@ -265,8 +265,8 @@
           <div class="container ">
             <div class="row">
               <div class="col-md-6">
-                <div class="detail-box1">
-                 <!--  <h5>
+                <div class="detail-box">
+                  <h5>
                     Autores da literatura brasileira
                   </h5>
                   <h1>
@@ -278,12 +278,12 @@
                     S. Bernardo (1934)
                   </br>
                     Angústia (1936)
-                  </h6> -->
+                  </h6>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="img-box">
-                  <img src="" alt="">
+                  <img src="images/teste3.png" alt="">
                 </div>
               </div>
             </div>
@@ -312,12 +312,12 @@
     <div class="container ">
       <div class="row">
         <div class="col-sm-6 col-md-4 ">
-          <div class="presetcategoria ">
-            <div class="presetcategoria2">
-              <img src="" alt="">
+          <div class="preset2 ">
+            <div class="preset">
+              <img src="images/autor7.png" alt="">
             </div>
-            <div class="detail-box1">
-             <!--  <h5>
+            <div class="detail-box">
+              <h5>
                 Paulo Coelho (1947 - )
               </h5>
               <h6>
@@ -326,17 +326,17 @@
                 Onze minutos (2003)
               </br>
                 Veronika Decide Morrer (1998)
-              </h6> -->
+              </h6>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-4 ">
-          <div class="presetcategoria ">
-            <div class="presetcategoria2">
-              <img src="" alt="">
+          <div class="preset2 ">
+            <div class="preset">
+              <img src="images/autor8.jpg" alt="">
             </div>
-            <div class="detail-box1">
-             <!--  <h5>
+            <div class="detail-box">
+              <h5>
                 José de Alencar (1829 - 1877)
               </h5>
               <h6>
@@ -345,17 +345,17 @@
                 Senhora (1875)
               </br>
                 O Guarani (1857)
-              </h6> -->
+              </h6>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-4 ">
-          <div class="presetcategoria ">
-            <div class="presetcategoria2">
-              <img src="" alt="">
+          <div class="preset2 ">
+            <div class="preset">
+              <img src="images/autor9.jpg" alt="">
             </div>
-            <div class="detail-box1">
-              <!-- <h5>
+            <div class="detail-box">
+              <h5>
                 Cecília Meireles (1901 - 1964)
               </h5>
               <h6>
@@ -364,7 +364,7 @@
                 Romanceiro da Inconfidência (1953)
               </br>
                 Vaga música (1942)
-              </h6> -->
+              </h6>
             </div>
           </div>
         </div>

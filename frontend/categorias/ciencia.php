@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -17,25 +16,26 @@
   <title>Mudar dps</title>
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="..\css/bootstrap.css" />
   <!-- font awesome style -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="..\css/font-awesome.min.css" rel="stylesheet" />
 
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="..\css/style.css" rel="stylesheet" />
   <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+  <link href="..\css/responsive.css" rel="stylesheet" />
+
 
 </head>
 
 <body class="sub_page">
 
-  <div class="hero_area">
+<div class="hero_area">
     <!-- header section strats -->
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index.php">
             <span>
               Mudar dps
             </span>
@@ -48,16 +48,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item ">
-                <a class="nav-link pl-lg-0" href="index.html">Home </a>
+                <a class="nav-link pl-lg-0" href="..\index.php">Home </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html"> Sobre</a>
+                <a class="nav-link" href="..\about.php"> Sobre</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="categories.html">Categorias <span class="sr-only">(current)</span> </a>
+                <a class="nav-link" href="..\categories.php">Categorias <span class="sr-only">(current)</span> </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="entrar.html">Perfil</a>
+                <a class="nav-link" href="..\entrar.php">Perfil</a>
               </li>
             </ul>
             <from class="search_form">
@@ -81,7 +81,7 @@
       <div class="container ">
         <div class="heading_container heading_center">
           <h2>
-            Romance
+            Ciência
           </h2>
         </div>
         <div class="row">

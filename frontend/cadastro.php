@@ -34,7 +34,7 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index.php">
             <span>
               Mudar dps
             </span>
@@ -47,16 +47,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item ">
-                <a class="nav-link pl-lg-0" href="index.html">Home </a>
+                <a class="nav-link pl-lg-0" href="index.php">Home </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html"> Sobre</a>
+                <a class="nav-link" href="about.php"> Sobre</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="categories.html">Categorias <span class="sr-only">(current)</span> </a>
+                <a class="nav-link" href="categories.php">Categorias <span class="sr-only">(current)</span> </a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link" href="entrar.html">Perfil</a>
+                <a class="nav-link" href="entrar.php">Perfil</a>
               </li>
             </ul>
             <from class="search_form">
@@ -119,7 +119,7 @@
                                                 </div>
                                                  <div class="form-floating mb-3">
                                                     <label for="preco">Preço:</label>
-                                                 <input class="form-control" id="preco" type="number" name="preco"
+                                                 <input class="form-control" id="preco" type="number" name="preco" min="0" max="10000" step="any"
                                                      placeholder="Insira o preço desejado" />
                                              </div> 
                                              <!-- <div class="form-floating mb-3">

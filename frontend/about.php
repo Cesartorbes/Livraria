@@ -34,7 +34,7 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index.php">
             <span>
               Mudar dps
             </span>
@@ -46,21 +46,21 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
-              <li class="nav-item ">
-                <a class="nav-link pl-lg-0" href="index.html">Home </a>
-              </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html"> Sobre</a>
+                <a class="nav-link pl-lg-0" href="index.php">Home </a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="categories.html">Categorias <span class="sr-only">(current)</span> </a>
-              </li> 
+                <a class="nav-link" href="about.php"> Sobre <span class="sr-only">(current)</span> </a>
+              </li>
               <li class="nav-item">
-                <a class="nav-link" href="entrar.html">Perfil</a>
+                <a class="nav-link" href="categories.php">Categorias</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="entrar.php">Perfil</a>
               </li>
             </ul>
             <from class="search_form">
-              <input type="text" class="form-control" placeholder="Search here...">
+              <input type="text" class="form-control" placeholder="Pesquise aqui...">
               <button class="" type="submit">
                 <i class="fa fa-search" aria-hidden="true"></i>
               </button>
@@ -72,18 +72,35 @@
     <!-- end header section -->
   </div>
 
-  <section class="catagory_section layout_padding">
-    <div class="catagory_container">
-      <div class="container ">
-        <div class="heading_container heading_center">
-          <h2>
-            Revenda de livros
-          </h2>
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container ">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="img-box">
+            <img src="images/about-img.png" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                Sobre nossa loja
+              </h2>
+            </div>
+            <p>
+              fort
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- end about section -->
+
+  <!-- info section -->
 
   <section class="info_section layout_padding2">
     <div class="container">
@@ -91,10 +108,10 @@
         <div class="col-md-6 col-lg-3 info-col">
           <div class="info_detail">
             <h4>
-              About Us
+              Sobre nós
             </h4>
             <p>
-              mudar dps
+              fort
             </p>
             <div class="info_social">
               <a href="https://www.facebook.com/Cristiano">
@@ -112,7 +129,7 @@
         <div class="col-md-6 col-lg-3 info-col">
           <div class="info_contact">
             <h4>
-              Contato
+              Endereço
             </h4>
             <div class="contact_link_box">
               <a href="">
@@ -130,9 +147,23 @@
             </div>
           </div>
         </div>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- end info section -->
+
+  <!-- footer section -->
+ <!--  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <a href="https://html.design/">Free Html Templates</a>
+      </p>
+    </div>
+  </footer> -->
+  <!-- footer section -->
 
   <!-- jQery -->
   <script src="js/jquery-3.4.1.min.js"></script>
@@ -140,3 +171,11 @@
   <script src="js/bootstrap.js"></script>
   <!-- custom js -->
   <script src="js/custom.js"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+  </script>
+  <!-- End Google Map -->
+
+</body>
+
+</html>
