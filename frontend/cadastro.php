@@ -53,7 +53,7 @@
                 <a class="nav-link" href="about.php"> Sobre</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="categories.php">Categorias <span class="sr-only">(current)</span> </a>
+                <a class="nav-link" href="categories.php">Categorias </a>
               </li> 
               <li class="nav-item">
                 <a class="nav-link" href="entrar.php">Perfil</a>

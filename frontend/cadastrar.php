@@ -24,6 +24,7 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <?php session_start(); ?>
 
 </head>
 
@@ -53,7 +54,7 @@
                 <a class="nav-link" href="about.php"> Sobre</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="categories.php">Categorias <span class="sr-only">(current)</span> </a>
+                <a class="nav-link" href="categories.php">Categorias</a>
               </li> 
               <li class="nav-item">
                 <a class="nav-link" href="entrar.php">Perfil</a>
@@ -88,10 +89,10 @@
                                         </div>
                                         <h3 class="text-center font-weight-light my-4">Cadastro de Usuário</h3>
                                         <div class="card-body">
-                                            <form method="post" name="registration" action="">
+                                            <form method="post" name="registration" action="../backend/inserir.php">
                                                 <div class="form-floating mb-3">
                                                     <label for="nome">Nome:</label>
-                                                    <input type="hidden" value="3" name="registro" id="registro">
+                                                    <input type="hidden" value="2" name="registro" id="registro">
                                                     <input class="form-control" id="nome" type="text" name="nome"
                                                         placeholder="Insira seu nome" required />
                                                 </div>
@@ -116,12 +117,7 @@
                                                                 name="confirmpassword" id="confirmpassword" />
                                                         </div>
                                                     </div>
-                                                </div>
-                                                 <div class="form-floating mb-3">
-                                                    <label for="tel">Telefone:</label>
-                                                 <input class="form-control" id="tel" type="tel" name="tel"
-                                                     placeholder="Insira seu número de telefone" />
-                                             </div>       
+                                                </div>  
                                                 <div class="mt-4 mb-0">
                                                     <div class="d-grid">
                                                         <button type="submit" name="submit" class="btn btn-primary btn-block">Criar Conta</button></div>

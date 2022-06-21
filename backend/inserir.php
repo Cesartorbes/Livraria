@@ -31,8 +31,35 @@ switch ($dados['registro']) {
             die('Já existe um ingrediente com o mesmo nome cadastrado');
         }
         break;
-        
+
+    case 2:
+        if($dados['senha'] == $dados['confirmpassword']){
+            $query = $conn->prepare('SELECT * FROM usuario WHERE email = :email');
+            $query->execute([
+                ':email' => $dados['email']           
+            ]);
+            // Se houver um item com esse nome no banco, ele não insere
+            if($query->fetch(PDO::FETCH_ASSOC) == null){
+                $query = $conn->prepare('INSERT INTO usuario (nome, senha, email) VALUES (:nome, :senha, :email);');
+            $query->execute([
+                ':nome' => $dados['nome'],
+                ':senha' => $dados['senha'],
+                ':email' => $dados['email']
+            ]);
+            header('location:..\frontend\cadastrar.php');
+            
+            } else{
+                // Por enquanto só morre, depois mostrar de forma mais amigável para o usuário
+                die('Já existe um usuário com o mesmo email cadastrado');
+            }
+            break;
+        } else{
+            die("<script>alert('As senhas nâo coincidem');</script>");
+        }
+                
+    
 }
+
 
 function pegaUltimoId($conexao){
     $query = $conexao->prepare("SELECT LAST_INSERT_ID()");
