@@ -9,26 +9,23 @@ try{
 }
 
 switch ($dados['registro']) {
-    // ingrediente
     case 1:
         $query = $conn->prepare('SELECT * FROM categorias WHERE categoria = :categoria AND nomelivro = :nomelivro');
         $query->execute([
             ':nomelivro' => $dados['nomelivro'],         
             ':categoria' => $dados['categoria']           
         ]);
-        // Se houver um ingrediente com esse nome no banco, ele não insere
         if($query->fetch(PDO::FETCH_ASSOC) == null){
-            $query = $conn->prepare('INSERT INTO :categorais (categoria, nomelivro, autor, preco) VALUES (:categoria, :nomelivro, :autor, :preco);');
+            $query = $conn->prepare('INSERT INTO categorias (nomelivro, categoria, autor, preco) VALUES (:nomelivro, :categoria, :autor, :preco);');
             $query->execute([
-                ':categoria' => $dados['categoria'],
                 ':nomelivro' => $dados['nomelivro'],
+                ':categoria' => $dados['categoria'],             
                 ':autor' => $dados['autor'],
                 ':preco' => $dados['preco']
             ]);
-            header('location:..\frontend\system\add-ingrediente.php');
+            header('location:..\frontend\adicionar.php');
         } else{
-            // Por enquanto só morre, depois mostrar de forma mais amigável para o usuário
-            die('Já existe um ingrediente com o mesmo nome cadastrado');
+            die('Já existe um livro com o mesmo nome cadastrado');
         }
         break;
 
@@ -49,7 +46,6 @@ switch ($dados['registro']) {
             header('location:..\frontend\cadastrar.php');
             
             } else{
-                // Por enquanto só morre, depois mostrar de forma mais amigável para o usuário
                 die('Já existe um usuário com o mesmo email cadastrado');
             }
             break;

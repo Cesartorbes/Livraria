@@ -1,4 +1,4 @@
-DROP DATABASE livraria;
+DROP DATABASE IF EXISTS livraria;
 
 CREATE DATABASE IF NOT EXISTS livraria;
 
@@ -16,6 +16,6 @@ CREATE TABLE IF NOT EXISTS categorias (livro_id INT NOT NULL AUTO_INCREMENT,
                                     categoria VARCHAR(100) NOT NULL,
                                     nomelivro VARCHAR(40) NOT NULL,
                                     autor VARCHAR(120) NOT NULL,
-                                    preco decimal,
+                                    preco real,
                                     PRIMARY KEY (livro_id)
                                     );                                   
