@@ -19,3 +19,5 @@ CREATE TABLE IF NOT EXISTS categorias (livro_id INT NOT NULL AUTO_INCREMENT,
                                     preco real,
                                     PRIMARY KEY (livro_id)
                                     );                                   
+
+INSERT INTO usuario ('nome', 'senha', 'email', 'numero') values ('admin', 'admin123', 'admin@gmail.com', '1')
