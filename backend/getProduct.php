@@ -11,7 +11,7 @@ if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
      * Get the product details.
      */
     $sql = 'SELECT * 
-            FROM products 
+            FROM livros
             WHERE id = ? 
             LIMIT 1';
 

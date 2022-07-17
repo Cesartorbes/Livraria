@@ -2,29 +2,34 @@
 include 'config.php';
 include 'connection.php';
 
-$productSaved = FALSE;
+$livroSaved = FALSE;
 
 if (isset($_POST['submit'])) {
     /*
      * Read posted values.
      */
-    $LivroNome = isset($_POST['nome']) ? $_POST['nome'] : '';
-    $LivroAutor = isset($_POST['autor']) ? $_POST['autor'] : 0;
+    $LivroCategoria = isset($_POST['categoria']) ? $_POST['categoria'] : '';
+    $LivroNome = isset($_POST['nomelivro']) ? $_POST['nomelivro'] : '';
+    $LivroAutor = isset($_POST['autor']) ? $_POST['autor'] : '';
     $LivroPreco = isset($_POST['preco']) ? $_POST['preco'] : '';
 
     /*
      * Validate posted values.
      */
-    if (empty($LivroNome)) {
-        $errors[] = 'Please provide a product name.';
+    if (empty($LivroCategoria)) {
+        $errors[] = 'Coloque uma categoria';
     }
 
-    if ($LivroAutor == 0) {
-        $errors[] = 'Please provide the quantity.';
+    if (empty($LivroNome)) {
+        $errors[] = 'Coloque o nome do livro';
+    }
+
+    if (empty($LivroAutor)) {
+        $errors[] = 'Coloque o autor do livro';
     }
 
     if (empty($LivroPreco)) {
-        $errors[] = 'Please provide a description.';
+        $errors[] = 'Coloque o preço do livro';
     }
 
     /*
@@ -51,11 +56,11 @@ if (isset($_POST['submit'])) {
                 if ($uploadedFileError === UPLOAD_ERR_NO_FILE) {
                     $errors[] = 'You did not provide any files.';
                 } elseif ($uploadedFileError === UPLOAD_ERR_OK) {
-                    $uploadedFileName = basename($_FILES['file']['name'][$uploadedFileKey]);
+                    $uploadedFileName = basename($_FILES['file']['nome'][$uploadedFileKey]);
 
                     if ($_FILES['file']['size'][$uploadedFileKey] <= UPLOAD_MAX_FILE_SIZE) {
                         $uploadedFileType = $_FILES['file']['type'][$uploadedFileKey];
-                        $uploadedFileTempName = $_FILES['file']['tmp_name'][$uploadedFileKey];
+                        $uploadedFileTempName = $_FILES['file']['tmp_nome'][$uploadedFileKey];
 
                         $uploadedFilePath = rtrim(UPLOAD_DIR, '/') . '/' . $uploadedFileName;
 
@@ -87,12 +92,13 @@ if (isset($_POST['submit'])) {
          * 
          * @link http://php.net/manual/en/mysqli.prepare.php
          */
-        $sql = 'INSERT INTO products (
-                    nome,
+        $sql = 'INSERT INTO livros (
+                    categoria,
+                    nomelivro,
                     autor,
                     preco
                 ) VALUES (
-                    ?, ?, ?
+                    ?, ?, ?, ?
                 )';
 
         /*
@@ -111,7 +117,7 @@ if (isset($_POST['submit'])) {
          * 
          * @link http://php.net/manual/en/mysqli-stmt.bind-param.php
          */
-        $statement->bind_param('sis', $livronome, $livroautor, $livropreco);
+        $statement->bind_param('sis', $LivroCategoria ,$livroNome, $LivroAutor, $LivroPreco);
 
         /*
          * Execute the prepared SQL statement.
@@ -138,8 +144,8 @@ if (isset($_POST['submit'])) {
          * Save a record for each uploaded file.
          */
         foreach ($filenamesToSave as $filename) {
-            $sql = 'INSERT INTO products_images (
-                        product_id,
+            $sql = 'INSERT INTO livros_images (
+                        livro_id,
                         filename
                     ) VALUES (
                         ?, ?
@@ -161,14 +167,14 @@ if (isset($_POST['submit'])) {
          */
         $connection->close();
 
-        $productSaved = TRUE;
+        $livroSaved = TRUE;
 
         /*
          * Reset the posted values, so that the default ones are now showed in the form.
          * See the "value" attribute of each html input.
          */
-        $productName = $productQuantity = $productDescription = NULL;
-    }
+        $LivroCategoria = $LivroNome = $Livroautor = $LivroPreco = NULL;
+    }   
 }
 ?>
 <!DOCTYPE html>
@@ -230,27 +236,30 @@ if (isset($_POST['submit'])) {
     <body>
 
         <div class="form-container">
-            <h2>Add a product</h2>
+            <h2>Adicione o livro</h2>
 
             <div class="messages">
                 <?php
                 if (isset($errors)) {
                     echo implode('<br/>', $errors);
-                } elseif ($productSaved) {
+                } elseif ($livroSaved) {
                     echo 'The product details were successfully saved.';
                 }
                 ?>
             </div>
 
             <form action="addProduct.php" method="post" enctype="multipart/form-data">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" value="<?php echo isset($productName) ? $productName : ''; ?>">
+                <label for="categoria">Categoria</label>
+                <input type="text" id="categoria" name="categoria" value="<?php echo isset($LivroCategoria) ? $LivroCategoria : ''; ?>">
 
-                <label for="quantity">Quantity</label>
-                <input type="number" id="quantity" name="quantity" min="0" value="<?php echo isset($productQuantity) ? $productQuantity : '0'; ?>">
+                <label for="nome">Nome do livro</label>
+                <input type="text" id="nome" name="nome" value="<?php echo isset($LivroNome) ? $LivroNome : ''; ?>">
 
-                <label for="description">Description</label>
-                <input type="text" id="description" name="description" value="<?php echo isset($productDescription) ? $productDescription : ''; ?>">
+                <label for="autor">Autor</label>
+                <input type="text" id="autor" name="autor" value="<?php echo isset($LivroAutor) ? $LivroAutor : ''; ?>">
+
+                <label for="preco">Preco</label>
+                <input type="number" min="0" max="10000" step="any" id="preco" name="preco" value="<?php echo isset($LivroPreco) ? $LivroPreco : ''; ?>">
 
                 <label for="file">Images</label>
                 <input type="file" id="file" name="file[]" multiple>
@@ -261,10 +270,10 @@ if (isset($_POST['submit'])) {
             </form>
 
             <?php
-            if ($productSaved) {
+            if ($livroSaved) {
                 ?>
                 <a href="getProduct.php?id=<?php echo $lastInsertId; ?>" class="link-to-product-details">
-                    Click me to see the saved product details in <b>getProduct.php</b> (product id: <b><?php echo $lastInsertId; ?></b>)
+                    Click me to see the saved product details in <b>getProduct.php</b> (livro id: <b><?php echo $lastInsertId; ?></b>)
                 </a>
                 <?php
             }
