@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
      * Read posted values.
      */
     $LivroCategoria = isset($_POST['categoria']) ? $_POST['categoria'] : '';
-    $LivroNome = isset($_POST['nomelivro']) ? $_POST['nomelivro'] : '';
+    $LivroNome = isset($_POST['nome']) ? $_POST['nome'] : '';
     $LivroAutor = isset($_POST['autor']) ? $_POST['autor'] : '';
     $LivroPreco = isset($_POST['preco']) ? $_POST['preco'] : '';
 
@@ -56,11 +56,11 @@ if (isset($_POST['submit'])) {
                 if ($uploadedFileError === UPLOAD_ERR_NO_FILE) {
                     $errors[] = 'You did not provide any files.';
                 } elseif ($uploadedFileError === UPLOAD_ERR_OK) {
-                    $uploadedFileName = basename($_FILES['file']['nome'][$uploadedFileKey]);
+                    $uploadedFileName = basename($_FILES['file']['name'][$uploadedFileKey]);
 
                     if ($_FILES['file']['size'][$uploadedFileKey] <= UPLOAD_MAX_FILE_SIZE) {
                         $uploadedFileType = $_FILES['file']['type'][$uploadedFileKey];
-                        $uploadedFileTempName = $_FILES['file']['tmp_nome'][$uploadedFileKey];
+                        $uploadedFileTempName = $_FILES['file']['tmp_name'][$uploadedFileKey];
 
                         $uploadedFilePath = rtrim(UPLOAD_DIR, '/') . '/' . $uploadedFileName;
 
@@ -94,7 +94,7 @@ if (isset($_POST['submit'])) {
          */
         $sql = 'INSERT INTO livros (
                     categoria,
-                    nomelivro,
+                    nome,
                     autor,
                     preco
                 ) VALUES (
@@ -117,7 +117,7 @@ if (isset($_POST['submit'])) {
          * 
          * @link http://php.net/manual/en/mysqli-stmt.bind-param.php
          */
-        $statement->bind_param('sis', $LivroCategoria ,$livroNome, $LivroAutor, $LivroPreco);
+        $statement->bind_param('ssss', $LivroCategoria ,$LivroNome, $LivroAutor, $LivroPreco);
 
         /*
          * Execute the prepared SQL statement.

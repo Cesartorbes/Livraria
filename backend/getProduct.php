@@ -5,7 +5,7 @@ include 'connection.php';
 if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
     $errors[] = 'You must select a product in order to see its details!';
 } else {
-    $productId = $_GET['id'];
+    $LivroId = $_GET['id'];
 
     /*
      * Get the product details.
@@ -17,7 +17,7 @@ if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
 
     $statement = $connection->prepare($sql);
 
-    $statement->bind_param('i', $productId);
+    $statement->bind_param('i', $LivroId);
 
     $statement->execute();
 
@@ -41,7 +41,7 @@ if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
      * 
      * @link http://php.net/manual/en/mysqli-result.fetch-all.php
      */
-    $products = $result->fetch_all(MYSQLI_ASSOC);
+    $livros = $result->fetch_all(MYSQLI_ASSOC);
 
     /*
      * Free the memory associated with the result. You should 
@@ -53,21 +53,22 @@ if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
 
     $statement->close();
 
-    if (!$products) {
+    if (!$livros) {
         $errors[] = 'No product found.';
     } else {
-        $product = $products[0];
+        $livro = $livros[0];
 
-        $productName = $product['name'];
-        $productQuantity = $product['quantity'];
-        $productDescription = $product['description'];
+        $LivroNome = $livro['nome'];
+        $LivroCategoria = $livro['categoria'];
+        $LivroAutor = $livro['autor'];
+        $LivroPreco = $livro['preco'];
 
         /*
          * Get the images list for the provided product.
          */
         $sql = 'SELECT * 
-                FROM products_images 
-                WHERE product_id = ?';
+                FROM livros_images 
+                WHERE livro_id = ?';
 
         $statement = $connection->prepare($sql);
 
@@ -148,16 +149,20 @@ if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
 
             <table class="product-details">
                 <tr>
-                    <td class="label">Name</td>
-                    <td><?php echo $productName; ?></td>
+                    <td class="label">Nome</td>
+                    <td><?php echo $LivroNome; ?></td>
                 </tr>
                 <tr>
-                    <td class="label">Quantity</td>
-                    <td><?php echo $productQuantity; ?></td>
+                    <td class="label">Categoria</td>
+                    <td><?php echo $LivroCategoria; ?></td>
                 </tr>
                 <tr>
-                    <td class="label">Description</td>
-                    <td><?php echo $productDescription; ?></td>
+                    <td class="label">Autor</td>
+                    <td><?php echo $LivroAutor; ?></td>
+                </tr>
+                <tr>
+                    <td class="label">Preço</td>
+                    <td><?php echo $LivroPreco; ?></td>
                 </tr>
             </table>
 
