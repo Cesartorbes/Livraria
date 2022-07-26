@@ -144,15 +144,20 @@ if (isset($_POST['submit'])) {
          * Save a record for each uploaded file.
          */
         foreach ($filenamesToSave as $filename) {
+            
             $sql = 'INSERT INTO livros (
-                        filename
-                    ) VALUES (
-                         ?
-                    )';
+                categoria,
+                nome,
+                autor,
+                preco,
+                filename
+            ) VALUES (
+                ?, ?, ?, ?, ?
+            )';
 
             $statement = $connection->prepare($sql);
 
-            $statement->bind_param('is', $filename);
+            $statement->bind_param('is', $categoria, $nome, $filename);
 
             $statement->execute();
 
