@@ -72,7 +72,7 @@ if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
 
         $statement = $connection->prepare($sql);
 
-        $statement->bind_param('i', $productId);
+        $statement->bind_param('i', $LivroId);
 
         $statement->execute();
 

@@ -16,7 +16,8 @@ CREATE TABLE IF NOT EXISTS livros (id INT NOT NULL AUTO_INCREMENT,
                                     categoria VARCHAR(100) NOT NULL,
                                     nome VARCHAR(40) NOT NULL,
                                     autor VARCHAR(120) NOT NULL,
-                                    preco real,
+                                    preco real NOT NULL,
+                                    filename VARCHAR(100) NOT NULL, 
                                     PRIMARY KEY (id)
                                     );                              
                                     
