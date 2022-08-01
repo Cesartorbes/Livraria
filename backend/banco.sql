@@ -30,4 +30,5 @@ CREATE TABLE IF NOT EXISTS livros_images (
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-INSERT INTO usuario ('nome', 'senha', 'email', 'numero') values ('admin', 'admin123', 'admin@gmail.com', '1')
+INSERT INTO `usuario`(`nome`, `senha`, `email`, `numero`) VALUES ('admin','admin123','admin@gmail.com','1')
+INSERT INTO `usuario`(`nome`, `senha`, `email`, `numero`) VALUES ('teste','teste123','teste@gmail.com')

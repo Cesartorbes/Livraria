@@ -1,3 +1,8 @@
+<?php session_start();
+include_once(__DIR__ . '..\..\..\backend\conecta.php');
+$banco = new Banco;
+?>
+
 <!DOCTYPE html>
 <html>
 
