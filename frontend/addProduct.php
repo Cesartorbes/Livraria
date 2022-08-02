@@ -244,7 +244,7 @@ if (isset($_POST['submit'])) {
                                                     <label for="categoria">Categoria:</label>
                                                     <input class="form-control" id="categoria" type="text" name="categoria"
                                                      placeholder="Insira a categoria do livro" value="<?php echo isset($LivroCategoria) ? $LivroCategoria : ''; ?>"/>
-                                                    <label class="texto">Adicionar apenas categorias possiveis: autobiografia, ciencia, historia, biografia, aventura, fantasia, romance, infantil, suspense
+                                                    <label class="texto">Adicionar apenas categorias possiveis: autobiografia, ciencia, historia, biografia, aventura, fantasia, romance, infantil, suspe
                                                     </label> 
                                                 <div class="form-floating mb-3">
                                                     <label for="preco">Autor:</label>
