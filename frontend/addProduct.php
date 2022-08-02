@@ -1,6 +1,5 @@
 <?php 
 session_start();
-include_once(__DIR__ . '..\..\backend\conecta.php');
 include_once(__DIR__ . '..\..\backend\connection.php');
 include_once(__DIR__ . '..\..\backend\config.php');
 
@@ -10,6 +9,7 @@ if (isset($_POST['submit'])) {
     /*
      * Read posted values.
      */
+    $LivroCategoria = isset($_POST['categoria']) ? $_POST['categoria'] : '';
     $LivroNome = isset($_POST['nome']) ? $_POST['nome'] : '';
     $LivroAutor = isset($_POST['autor']) ? $_POST['autor'] : '';
     $LivroPreco = isset($_POST['preco']) ? $_POST['preco'] : '';
@@ -17,6 +17,11 @@ if (isset($_POST['submit'])) {
     /*
      * Validate posted values.
      */
+
+    if (empty($LivroCategoria)) {
+        $errors[] = 'Coloque uma categoria';
+    }
+
     if (empty($LivroNome)) {
         $errors[] = 'Coloque o nome do livro';
     }
@@ -81,7 +86,7 @@ if (isset($_POST['submit'])) {
     /*
      * Save product and images.
      */
-    if (!isset($errors)) {
+     if (!isset($errors)) {
         /*
          * The SQL statement to be prepared. Notice the so-called markers, 
          * e.g. the "?" signs. They will be replaced later with the 
@@ -89,14 +94,21 @@ if (isset($_POST['submit'])) {
          * 
          * @link http://php.net/manual/en/mysqli.prepare.php
          */
-
+        $sql = 'INSERT INTO livros (
+                    categoria,
+                    nome,
+                    autor,
+                    preco
+                ) VALUES (
+                    ?, ?, ?, ?
+                )';
 
         /*
          * Prepare the SQL statement for execution - ONLY ONCE.
          * 
          * @link http://php.net/manual/en/mysqli.prepare.php
          */
-        //$statement = $connection->prepare($sql);
+        $statement = $connection->prepare($sql);
 
         /*
          * Bind variables for the parameter markers (?) in the 
@@ -107,7 +119,7 @@ if (isset($_POST['submit'])) {
          * 
          * @link http://php.net/manual/en/mysqli-stmt.bind-param.php
          */
-        // $statement->bind_param('ssss', $LivroCategoria ,$LivroNome, $LivroAutor, $LivroPreco);
+        $statement->bind_param('sssd', $LivroCategoria ,$LivroNome, $LivroAutor, $LivroPreco);
 
         /*
          * Execute the prepared SQL statement.
@@ -116,10 +128,10 @@ if (isset($_POST['submit'])) {
          * 
          * @link http://php.net/manual/en/mysqli-stmt.execute.php
          */
-        //$statement->execute();
+        $statement->execute();
 
         // Read the id of the inserted product.
-        
+        $lastInsertId = $connection->insert_id;
 
         /*
          * Close the prepared statement. It also deallocates the statement handle.
@@ -128,30 +140,24 @@ if (isset($_POST['submit'])) {
          * 
          * @link http://php.net/manual/en/mysqli-stmt.close.php
          */
-       // $statement->close();
+        $statement->close();
 
         /*
          * Save a record for each uploaded file.
          */
         foreach ($filenamesToSave as $filename) {
-            
-            $sql = 'INSERT INTO livros (
-                categoria,
-                nome,
-                autor,
-                preco,
-                filename
-            ) VALUES (
-                ?, ?, ?, ?, ?
-            )';
+            $sql = 'INSERT INTO livros_images (
+                        livro_id,
+                        filename
+                    ) VALUES (
+                        ?, ?
+                    )';
 
             $statement = $connection->prepare($sql);
 
-            $statement->bind_param('is', $categoria, $nome, $autor, $preco, $filename);
+            $statement->bind_param('is', $lastInsertId, $filename);
 
             $statement->execute();
-
-            $lastInsertId = $connection->insert_id;
 
             $statement->close();
         }
@@ -169,7 +175,7 @@ if (isset($_POST['submit'])) {
          * Reset the posted values, so that the default ones are now showed in the form.
          * See the "value" attribute of each html input.
          */
-        $LivroCategoria = $LivroNome = $Livroautor = $LivroPreco = NULL;
+        $LivroCategoria = $LivroNome = $LivroAutor = $LivroPreco = NULL;
     }   
 }
 
@@ -231,22 +237,15 @@ if (isset($_POST['submit'])) {
                                         <form action="addProduct.php" method="post" enctype="multipart/form-data">
                                                 <div class="form-floating mb-3">
                                                     <label for="nomelivro">Nome do livro:</label>
-                                                    <input class="form-control" id="nomelivro" type="text" name="nomelivro"
-                                                        placeholder="Insira o nome do livro" required value="<?php echo isset($LivroCategoria) ? $LivroCategoria : ''; ?>">
+                                                    <input class="form-control" id="nome" type="text" name="nome"
+                                                        placeholder="Insira o nome do livro" required value="<?php echo isset($LivroNome) ? $LivroNome : ''; ?>">
                                                 </div>
                                                 <div class="form-floating mb-3">
-                                                <label for="categoria">Categoria:</label>
-                                                <select name="categoria" >
-                                                    <option value="suspense">Suspense</option>
-                                                    <option value="romance" selected>Romance</option>
-                                                    <option value="infantil">Infantil</option>
-                                                    <option value="historia">Historia</option>
-                                                    <option value="fantasia">Fantasia</option>
-                                                    <option value="ciencia">Ciência</option>
-                                                    <option value="biografia">Biografia</option>
-                                                    <option value="aventura">Aventura</option>
-                                                    <option value="autobiografia">Autobiografia</option>
-                                                </select>
+                                                    <label for="categoria">Categoria:</label>
+                                                    <input class="form-control" id="categoria" type="text" name="categoria"
+                                                     placeholder="Insira a categoria do livro" value="<?php echo isset($LivroCategoria) ? $LivroCategoria : ''; ?>"/>
+                                                    <label class="texto">Adicionar apenas categorias possiveis: autobiografia, ciencia, historia, biografia, aventura, fantasia, romance, infantil, suspense
+                                                    </label> 
                                                 <div class="form-floating mb-3">
                                                     <label for="preco">Autor:</label>
                                                  <input class="form-control" id="autor" type="text" name="autor"

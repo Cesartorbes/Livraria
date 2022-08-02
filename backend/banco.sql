@@ -16,8 +16,7 @@ CREATE TABLE IF NOT EXISTS livros (id INT NOT NULL AUTO_INCREMENT,
                                     categoria VARCHAR(100) NOT NULL,
                                     nome VARCHAR(40) NOT NULL,
                                     autor VARCHAR(120) NOT NULL,
-                                    preco real NOT NULL,
-                                    filename VARCHAR(100) NOT NULL, 
+                                    preco real NOT NULL, 
                                     PRIMARY KEY (id)
                                     );                              
                                     
@@ -30,5 +29,5 @@ CREATE TABLE IF NOT EXISTS livros_images (
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `usuario`(`nome`, `senha`, `email`, `numero`) VALUES ('admin','admin123','admin@gmail.com','1')
-INSERT INTO `usuario`(`nome`, `senha`, `email`, `numero`) VALUES ('teste','teste123','teste@gmail.com')
+INSERT INTO `usuario`(`nome`, `senha`, `email`, `numero`) VALUES ('admin','admin123','admin@gmail.com','1');
+INSERT INTO `usuario`(`nome`, `senha`, `email`) VALUES ('teste','teste123','teste@gmail.com')
