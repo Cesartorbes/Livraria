@@ -28,4 +28,5 @@ $mysqliDriver->report_mode = (MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
  * 
  * @see http://php.net/manual/en/mysqli.construct.php
  */
+
 $connection = new mysqli(HOST, USERNAME, PASSWORD, DATABASE, PORT);

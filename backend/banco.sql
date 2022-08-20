@@ -17,9 +17,17 @@ CREATE TABLE IF NOT EXISTS livros (id INT NOT NULL AUTO_INCREMENT,
                                     nome VARCHAR(40) NOT NULL,
                                     autor VARCHAR(120) NOT NULL,
                                     preco real NOT NULL, 
+                                    filename varchar(100) NOT NULL,
                                     PRIMARY KEY (id)
                                     );                              
-                                    
+
+
+
+INSERT INTO `usuario`(`nome`, `senha`, `email`, `numero`) VALUES ('admin','admin123','admin@gmail.com','1');
+INSERT INTO `usuario`(`nome`, `senha`, `email`) VALUES ('teste','teste123','teste@gmail.com')
+
+
+/*                                     
 CREATE TABLE IF NOT EXISTS livros_images (
                                     id int NOT NULL AUTO_INCREMENT,
                                     livro_id int NOT NULL,
@@ -28,6 +36,4 @@ CREATE TABLE IF NOT EXISTS livros_images (
                                     CONSTRAINT fk_livros_images FOREIGN KEY (`livro_id`) REFERENCES `livros` (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-INSERT INTO `usuario`(`nome`, `senha`, `email`, `numero`) VALUES ('admin','admin123','admin@gmail.com','1');
-INSERT INTO `usuario`(`nome`, `senha`, `email`) VALUES ('teste','teste123','teste@gmail.com')
+lixozinho por enquanto */

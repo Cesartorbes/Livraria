@@ -1,5 +1,7 @@
 <?php session_start();
-include_once(__DIR__ . '..\..\..\backend\conecta.php');
+include_once(__DIR__ . '..\..\..\backend\connection.php');
+include_once(__DIR__ . '..\..\..\backend\config.php');
+include_once(__DIR__ . '..\..\..\backend\conecta.php'); 
 $banco = new Banco;
 ?>
 
@@ -9,14 +11,14 @@ $banco = new Banco;
 <head>
   <!-- Basic -->
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="X-UA-Compatible" connectiontent="IE=edge" />
   <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="viewport" connectiontent="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Site Metas -->
-  <link rel="icon" href="images/favicon.png" type="image/gif" />
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+  <link rel="iconnection" href="images/faviconnection.png" type="image/gif" />
+  <meta name="keywords" connectiontent="" />
+  <meta name="description" connectiontent="" />
+  <meta name="author" connectiontent="" />
 
   <title>Mudar dps</title>
 
@@ -45,142 +47,92 @@ $banco = new Banco;
   <!-- catagory section -->
 
   <section class="catagory_section layout_padding">
-    <div class="catagory_container">
-      <div class="container ">
+    <div class="catagory_connectiontainer">
+      <div class="connectiontainer ">
       <?php
            if ($banco->autentica($_SESSION["usuario_id"])) {
              include_once('..\autentica.php');
            }
         ?>
-        <div class="heading_container heading_center">
-          <h2>
-            Suspense
-          </h2>
-        </div>
-        <div class="row">
-          <div class="col-sm-6 col-md-4 ">
-            <div class="presetcategoria ">
-              <div class="presetcategoria2">
-                <img src="" alt="">
-              </div>
-              <div class="detail-box1">
-               <!--  <h5>
-                  Stephen King (1947 - )
-                </h5>
-                <h6>
-                  It (1986)
-                </br>
-                  The Shining (1977)
-                </br>
-                  Carrie (1974)
-                </h6> -->
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4 ">
-            <div class="presetcategoria ">
-              <div class="presetcategoria2">
-                <img src="" alt="">
-              </div>
-              <div class="detail-box1">
-                <!-- <h5>
-                  Clarice Lispector (1920 - 1977)
-                </h5>
-                <h6>
-                  Perto do coração selvagem (1943)
-                </br>
-                  Laços de família (1960)
-                </br>
-                  A hora da estrela (1977)
-                </h6> -->
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4 ">
-            <div class="presetcategoria ">
-              <div class="presetcategoria2">
-                <img src="" alt="">
-              </div>
-              <div class="detail-box1">
-                <!-- <h5>
-                  J. K. Rowling (1965 - )
-                </h5>
-                <h6>
-                  Harry Potter e a Pedra Filosofal (1997)
-                </br>
-                  Animais Fantásticos e Onde Habitam (2001)
-                </br>
-                  Morte súbita (2012)
-                </h6> -->
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4 ">
-            <div class="presetcategoria ">
-              <div class="presetcategoria2">
-                <img src="" alt="">
-              </div>
-              <div class="detail-box1">
-                <!-- <h5>
-                  Suzanne Collins (1962 - )
-                </h5>
-                <h6>
-                  Jogos vorazes (2008)
-                </br>
-                  Em chamas (2009)
-                </br>
-                  A esperança (2010)
-                </h6> -->
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4 ">
-            <div class="presetcategoria ">
-              <div class="presetcategoria2">
-                <img src="" alt="">
-              </div>
-              <div class="detail-box1">
-              <!--   <h5>
-                  J. R. R. Tolkien (1892 - 1973)
-                </h5>
-                <h6>
-                  O Hobbit (1937)
-                </br>
-                  O Senhor dos Anéis (1954)
-                </br>
-                  O Silmarillion (1977)
-                </h6> -->
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4 ">
-            <div class="presetcategoria ">
-              <div class="presetcategoria2">
-                <img src="" alt="">
-              </div>
-              <div class="detail-box1">
-                <!-- <h5>
-                  Fernando Pessoa (1888 - 1935)
-                </h5>
-                <h6>
-                  Tabacaria (1933)
-                </br>
-                  Mensagem (1934)
-                </br>
-                  O Guardador de Rebanhos (1925)
-                </h6> -->
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
+    <?php
+    
+    if(isset($_POST['sort']))
+    {
+        if($_POST['sort']=="preco")
+                {   $query = "SELECT * FROM livros WHERE categoria='suspense' ORDER BY preco";
+                    $result = mysqli_query ($connection,$query)or die(mysqli_error($connection));
+                    ?>
+                       <script type="text/javascript">
+                          document.getElementById('select').Selected=$_POST['sort'];
+                       </script>
+                    <?php
+                }
+        else
+        if($_POST['sort']=="precoh")
+                {   $query = "SELECT * FROM livros WHERE categoria='suspense' ORDER BY preco DESC";
+                    $result = mysqli_query ($connection,$query)or die(mysqli_error($connection));
+                }
+    } 
+    else   
+            {   $query = "SELECT * FROM livros WHERE categoria='suspense'";
+                $result = mysqli_query ($connection,$query)or die(mysqli_error($connection));
+            } 
+    $i=0;
+    echo '<div class="connectiontainer-fluid" id="books">
+        <div class="row">
+          <div class="col-xs-12 text-center" id="heading">
+                 <h2 style="color:rgb(228, 55, 25);text-transform:uppercase;margin-bottom:0px;"> Suspense </h2>
+           </div>
+        </div>      
+        <div class="connectiontainer fluid">
+             <div class="row">
+                  <div class="col-sm-5 col-sm-offset-6 col-md-5 col-md-offset-7 col-lg-4 col-lg-offset-8">
+                       <form action="';echo $_SERVER['PHP_SELF'];echo'" method="post" class="pull-right">
+                           <label for="sort">Sort by &nbsp: &nbsp</label>
+                            <select name="sort" id="select" onchange="form.submit()">
+                                <option value="default" name="default"  selected="selected">Select</option>
+                                <option value="preco" name="preco">Low To High preco </option>
+                                <option value="precoh" name="precoh">Highest To Lowest preco </option>
+                            </select>
+                       </form>
+                  </div>
+              </div>
+        </div>';
+
+        if(mysqli_num_rows($result) > 0) 
+        {   
+            while($row = mysqli_fetch_assoc($result)) 
+            {
+            $path="../".$row['filename'];
+            if($i%4==0)
+            echo '<div class="row">';
+            echo'
+                <div class="col-sm-6 col-md-3 col-lg-3 text-center">
+                    <div class="book-block" style="border :3px solid #DEEAEE;">
+                        <img class="book block-center img-responsive" src="'.$path.'">
+                        <hr>
+                         ' . $row["nome"] . '<br>
+                         ' . $row["autor"] . '<br>
+                        ' . $row["preco"] .'  &nbsp
+                    </div>
+                </div>
+                
+               </a> ';
+            $i++;
+            if($i%4==0)
+            echo '</div>';
+            }
+        }
+    echo '</div>';
+    ?>
   </section>
   <section class="slider_section ">
     <div id="customCarousel1" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <div class="container ">
+          <div class="connectiontainer ">
             <div class="row">
               <div class="col-md-6">
                 <div class="detail-box1">
@@ -208,7 +160,7 @@ $banco = new Banco;
           </div>
         </div>
         <div class="carousel-item">
-          <div class="container ">
+          <div class="connectiontainer ">
             <div class="row">
               <div class="col-md-6">
                 <div class="detail-box1">
@@ -236,7 +188,7 @@ $banco = new Banco;
           </div>
         </div>
         <div class="carousel-item">
-          <div class="container ">
+          <div class="connectiontainer ">
             <div class="row">
               <div class="col-md-6">
                 <div class="detail-box1">
@@ -266,11 +218,11 @@ $banco = new Banco;
         </div>
       </div>
       <div class="carousel_btn_box">
-        <a class="carousel-control-prev" href="#customCarousel1" role="button" data-slide="prev">
+        <a class="carousel-connectiontrol-prev" href="#customCarousel1" role="button" data-slide="prev">
           <i class="fa fa-angle-left" aria-hidden="true"></i>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#customCarousel1" role="button" data-slide="next">
+        <a class="carousel-connectiontrol-next" href="#customCarousel1" role="button" data-slide="next">
           <i class="fa fa-angle-right" aria-hidden="true"></i>
           <span class="sr-only">Next</span>
         </a>
@@ -281,75 +233,6 @@ $banco = new Banco;
 </div>
 
 
-<section class="catagory_section layout_padding">
-  <div class="catagory_container">
-    <div class="container ">
-      <div class="row">
-        <div class="col-sm-6 col-md-4 ">
-          <div class="presetcategoria ">
-            <div class="presetcategoria2">
-              <img src="" alt="">
-            </div>
-            <div class="detail-box1">
-             <!--  <h5>
-                Paulo Coelho (1947 - )
-              </h5>
-              <h6>
-                O alquimista (1988)
-              </br>
-                Onze minutos (2003)
-              </br>
-                Veronika Decide Morrer (1998)
-              </h6> -->
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 ">
-          <div class="presetcategoria ">
-            <div class="presetcategoria2">
-              <img src="" alt="">
-            </div>
-            <div class="detail-box1">
-             <!--  <h5>
-                José de Alencar (1829 - 1877)
-              </h5>
-              <h6>
-                Iracema (1865)
-              </br>
-                Senhora (1875)
-              </br>
-                O Guarani (1857)
-              </h6> -->
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 ">
-          <div class="presetcategoria ">
-            <div class="presetcategoria2">
-              <img src="" alt="">
-            </div>
-            <div class="detail-box1">
-              <!-- <h5>
-                Cecília Meireles (1901 - 1964)
-              </h5>
-              <h6>
-                Ou Isto ou Aquilo (1964)
-              </br>
-                Romanceiro da Inconfidência (1953)
-              </br>
-                Vaga música (1942)
-              </h6> -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-  <!-- end catagory section -->
-
-  <!-- info section -->
 
   <?php include_once('..\footer.php'); ?>
 
@@ -357,7 +240,7 @@ $banco = new Banco;
 
   <!-- footer section -->
  <!--  <footer class="footer_section">
-    <div class="container">
+    <div class="connectiontainer">
       <p>
         &copy; <span id="displayYear"></span> All Rights Reserved By
         <a href="https://html.design/">Free Html Templates</a>

@@ -94,68 +94,21 @@ if (isset($_POST['submit'])) {
          * 
          * @link http://php.net/manual/en/mysqli.prepare.php
          */
-        $sql = 'INSERT INTO livros (
+        
+        foreach ($filenamesToSave as $filename) {
+            $sql = 'INSERT INTO livros (
                     categoria,
                     nome,
                     autor,
-                    preco
+                    preco,
+                    filename
                 ) VALUES (
-                    ?, ?, ?, ?
+                        ?, ?, ?, ?, ?
                 )';
-
-        /*
-         * Prepare the SQL statement for execution - ONLY ONCE.
-         * 
-         * @link http://php.net/manual/en/mysqli.prepare.php
-         */
-        $statement = $connection->prepare($sql);
-
-        /*
-         * Bind variables for the parameter markers (?) in the 
-         * SQL statement that was passed to prepare(). The first 
-         * argument of bind_param() is a string that contains one 
-         * or more characters which specify the types for the 
-         * corresponding bind variables.
-         * 
-         * @link http://php.net/manual/en/mysqli-stmt.bind-param.php
-         */
-        $statement->bind_param('sssd', $LivroCategoria ,$LivroNome, $LivroAutor, $LivroPreco);
-
-        /*
-         * Execute the prepared SQL statement.
-         * When executed any parameter markers which exist will 
-         * automatically be replaced with the appropriate data.
-         * 
-         * @link http://php.net/manual/en/mysqli-stmt.execute.php
-         */
-        $statement->execute();
-
-        // Read the id of the inserted product.
-        $lastInsertId = $connection->insert_id;
-
-        /*
-         * Close the prepared statement. It also deallocates the statement handle.
-         * If the statement has pending or unread results, it cancels them 
-         * so that the next query can be executed.
-         * 
-         * @link http://php.net/manual/en/mysqli-stmt.close.php
-         */
-        $statement->close();
-
-        /*
-         * Save a record for each uploaded file.
-         */
-        foreach ($filenamesToSave as $filename) {
-            $sql = 'INSERT INTO livros_images (
-                        livro_id,
-                        filename
-                    ) VALUES (
-                        ?, ?
-                    )';
 
             $statement = $connection->prepare($sql);
 
-            $statement->bind_param('is', $lastInsertId, $filename);
+            $statement->bind_param('sssds', $LivroCategoria ,$LivroNome, $LivroAutor, $LivroPreco, $filename);
 
             $statement->execute();
 
@@ -244,7 +197,7 @@ if (isset($_POST['submit'])) {
                                                     <label for="categoria">Categoria:</label>
                                                     <input class="form-control" id="categoria" type="text" name="categoria"
                                                      placeholder="Insira a categoria do livro" value="<?php echo isset($LivroCategoria) ? $LivroCategoria : ''; ?>"/>
-                                                    <label class="texto">Adicionar apenas categorias possiveis: autobiografia, ciencia, historia, biografia, aventura, fantasia, romance, infantil, suspe
+                                                    <label class="texto">Adicionar apenas categorias possiveis: autobiografia, ciencia, historia, biografia, aventura, fantasia, romance, infantil, suspense
                                                     </label> 
                                                 <div class="form-floating mb-3">
                                                     <label for="preco">Autor:</label>
