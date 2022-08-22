@@ -11,16 +11,17 @@ $banco = new Banco;
 <head>
   <!-- Basic -->
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" connectiontent="IE=edge" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- Mobile Metas -->
-  <meta name="viewport" connectiontent="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Site Metas -->
-  <link rel="iconnection" href="images/faviconnection.png" type="image/gif" />
-  <meta name="keywords" connectiontent="" />
-  <meta name="description" connectiontent="" />
-  <meta name="author" connectiontent="" />
+  <link rel="icon" href="../images/favicon.png" type="image/gif" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
 
-  <title>Mudar dps</title>
+
+  <title>Suspense</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="..\css/bootstrap.css" />
@@ -47,16 +48,19 @@ $banco = new Banco;
   <!-- catagory section -->
 
   <section class="catagory_section layout_padding">
-    <div class="catagory_connectiontainer">
-      <div class="connectiontainer ">
+    <div class="catagory_container">
+      <div class="container ">
       <?php
            if ($banco->autentica($_SESSION["usuario_id"])) {
              include_once('..\autentica.php');
            }
         ?>
-      </div>
-    </div>
-    <?php
+        <div class="heading_container heading_center">
+          <h2>
+            Suspense
+          </h2>
+        </div>
+        <?php
     
     if(isset($_POST['sort']))
     {
@@ -80,12 +84,7 @@ $banco = new Banco;
                 $result = mysqli_query ($connection,$query)or die(mysqli_error($connection));
             } 
     $i=0;
-    echo '<div class="connectiontainer-fluid" id="books">
-        <div class="row">
-          <div class="col-xs-12 text-center" id="heading">
-                 <h2 style="color:rgb(228, 55, 25);text-transform:uppercase;margin-bottom:0px;"> Suspense </h2>
-           </div>
-        </div>      
+    echo '      
         <div class="connectiontainer fluid">
              <div class="row">
                   <div class="col-sm-5 col-sm-offset-6 col-md-5 col-md-offset-7 col-lg-4 col-lg-offset-8">
@@ -109,13 +108,17 @@ $banco = new Banco;
             if($i%4==0)
             echo '<div class="row">';
             echo'
-                <div class="col-sm-6 col-md-3 col-lg-3 text-center">
-                    <div class="book-block" style="border :3px solid #DEEAEE;">
-                        <img class="book block-center img-responsive" src="'.$path.'">
-                        <hr>
-                         ' . $row["nome"] . '<br>
-                         ' . $row["autor"] . '<br>
-                        ' . $row["preco"] .'  &nbsp
+                    <div class="col-sm-6 col-md-4 ">
+                        <div class="presetcategoria ">
+                            <div class="presetcategoria2">
+                                <img class="book block-center img-responsive" src="'.$path.'">
+                            </div>
+                            <div class="detail-box1">
+                            <hr>
+                            ' . "Livro: ". $row["nome"] . '<br>
+                            ' . "Autor: ".$row["autor"] . '<br>
+                            ' . "Preço: R$:".$row["preco"] .'  &nbsp
+                            </div>
                     </div>
                 </div>
                 
@@ -128,111 +131,8 @@ $banco = new Banco;
     echo '</div>';
     ?>
   </section>
-  <section class="slider_section ">
-    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="connectiontainer ">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="detail-box1">
-                <!--   <h5>
-                    Autores da literatura brasileira
-                  </h5>
-                  <h1>
-                    Carlos Drummond de Andrade (1902 - 1987)
-                  </h1>
-                  <h6>
-                    Poemas (1982)
-                  </br>
-                    Alguma poesia (1930)
-                  </br>
-                    Sentimento do Mundo (1940)
-                  </h6> -->
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="img-box">
-                  <img src="" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="connectiontainer ">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="detail-box1">
-                  <!-- <h5>
-                    Autores da literatura brasileira
-                  </h5>
-                  <h1>
-                    Machado de Assis (1839 - 1908)
-                  </h1>
-                  <h6>
-                    Dom Casmurro (1899)
-                  </br>
-                    Memórias Póstumas de Brás Cubas (1881)
-                  </br>
-                    O Alienista (1882)
-                  </h6> -->
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="img-box">
-                  <img src="" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="connectiontainer ">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="detail-box1">
-                 <!--  <h5>
-                    Autores da literatura brasileira
-                  </h5>
-                  <h1>
-                    Graciliano Ramos (1892 - 1953)
-                  </h1>
-                  <h6>
-                    Vidas Secas (1938)
-                  </br>
-                    S. Bernardo (1934)
-                  </br>
-                    Angústia (1936)
-                  </h6> -->
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="img-box">
-                  <img src="" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
-      <div class="carousel_btn_box">
-        <a class="carousel-connectiontrol-prev" href="#customCarousel1" role="button" data-slide="prev">
-          <i class="fa fa-angle-left" aria-hidden="true"></i>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-connectiontrol-next" href="#customCarousel1" role="button" data-slide="next">
-          <i class="fa fa-angle-right" aria-hidden="true"></i>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </div>
-  </section>
   <!-- end slider section -->
 </div>
-
-
 
   <?php include_once('..\footer.php'); ?>
 

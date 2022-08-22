@@ -17,7 +17,7 @@ include_once(__DIR__ . '..\..\backend\conecta.php');
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Mudar dps</title>
+  <title>Cadastro de usuário</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -54,7 +54,7 @@ include_once(__DIR__ . '..\..\backend\conecta.php');
                                         <div class="card-header">
                                             <h3 class="text-center font-weight-light my-4"></h3>
                                         </div>
-                                        <h3 class="text-center font-weight-light my-4">Cadastro de Usuário</h3>
+                                        <h3 class="text-center font-weight-light my-4">Cadastro</h3>
                                         <div class="card-body">
                                             <form method="post" name="registration" action="../backend/inserir.php">
                                                 <div class="form-floating mb-3">

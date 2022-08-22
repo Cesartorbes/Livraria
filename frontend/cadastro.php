@@ -17,7 +17,7 @@ include_once(__DIR__ . '..\..\backend\conecta.php');
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Mudar dps</title>
+  <title>Cadastro de livros</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />

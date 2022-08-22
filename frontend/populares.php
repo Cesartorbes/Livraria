@@ -43,7 +43,7 @@
       <div class="container ">
         <div class="heading_container heading_center">
           <h2>
-            Autores populares
+            Livros populares
           </h2>
         </div>
         <div class="row">

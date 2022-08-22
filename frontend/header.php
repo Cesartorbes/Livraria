@@ -3,7 +3,7 @@
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="index.php">
             <span>
-              Mudar dps
+              Bookstore
             </span>
           </a>
 
@@ -30,7 +30,7 @@
               <input type="text" class="form-control" placeholder="Pesquise aqui...">
               <button class="" type="submit">
                 <i class="fa fa-search" aria-hidden="true"></i>
-              </button>
+              </button> 
             </from>
           </div>
         </nav>

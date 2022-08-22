@@ -149,7 +149,7 @@ if (isset($_POST['submit'])) {
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Mudar dps</title>
+  <title>Cadastro de produtos</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />

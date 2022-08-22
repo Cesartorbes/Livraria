@@ -13,7 +13,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Mudar dps</title>
+  <title>Home</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -45,7 +45,7 @@
                     <h1>
                       Livros populares!         
                     </h1>
-                    <a href="">
+                    <a href="populares.php">
                       Ver mais
                     </a>
                   </div>
