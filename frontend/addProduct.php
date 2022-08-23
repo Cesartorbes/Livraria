@@ -13,6 +13,7 @@ if (isset($_POST['submit'])) {
     $LivroNome = isset($_POST['nome']) ? $_POST['nome'] : '';
     $LivroAutor = isset($_POST['autor']) ? $_POST['autor'] : '';
     $LivroPreco = isset($_POST['preco']) ? $_POST['preco'] : '';
+    $LivroDescricao = isset($_POST['descricao']) ? $_POST['descricao'] : '';
 
     /*
      * Validate posted values.
@@ -32,6 +33,10 @@ if (isset($_POST['submit'])) {
 
     if (empty($LivroPreco)) {
         $errors[] = 'Coloque o preço do livro';
+    } 
+
+    if (empty($LivroDescricao)) {
+        $errors[] = 'Coloque a descrição do livro';
     }
 
     /*
@@ -100,15 +105,16 @@ if (isset($_POST['submit'])) {
                     categoria,
                     nome,
                     autor,
+                    descricao,
                     preco,
                     filename
                 ) VALUES (
-                        ?, ?, ?, ?, ?
+                        ?, ?, ?, ?, ?, ?
                 )';
 
             $statement = $connection->prepare($sql);
 
-            $statement->bind_param('sssds', $LivroCategoria ,$LivroNome, $LivroAutor, $LivroPreco, $filename);
+            $statement->bind_param('ssssds', $LivroCategoria ,$LivroNome, $LivroAutor, $LivroDescricao, $LivroPreco, $filename);
 
             $statement->execute();
 
@@ -128,7 +134,7 @@ if (isset($_POST['submit'])) {
          * Reset the posted values, so that the default ones are now showed in the form.
          * See the "value" attribute of each html input.
          */
-        $LivroCategoria = $LivroNome = $LivroAutor = $LivroPreco = NULL;
+        $LivroCategoria = $LivroNome = $LivroAutor = $LivroDescricao = $LivroPreco = NULL;
     }   
 }
 
@@ -197,13 +203,18 @@ if (isset($_POST['submit'])) {
                                                     <label for="categoria">Categoria:</label>
                                                     <input class="form-control" id="categoria" type="text" name="categoria"
                                                      placeholder="Insira a categoria do livro" value="<?php echo isset($LivroCategoria) ? $LivroCategoria : ''; ?>"/>
-                                                    <label class="texto">Adicionar apenas categorias possiveis: autobiografia, ciencia, historia, biografia, aventura, fantasia, romance, infantil, suspense
+                                                    <label class="texto">Adicionar apenas categorias possiveis: aventura, biografia, ciencia, fantasia, historia, infantil, romance, suspense e terror
                                                     </label> 
                                                 <div class="form-floating mb-3">
                                                     <label for="preco">Autor:</label>
                                                  <input class="form-control" id="autor" type="text" name="autor"
                                                      placeholder="Insira o nome do autor" value="<?php echo isset($LivroAutor) ? $LivroAutor : ''; ?>"/>
                                                 </div>   
+                                                <div class="form-floating mb-3">
+                                                    <label for="descricao">Descrição do livro:</label>
+                                                    <input class="form-control" id="descricao" type="text" name="descricao"
+                                                    placeholder="Insira a descrição do livro" required value="<?php echo isset($LivroDescricao) ? $LivroDescricao : ''; ?>">
+                                                </div>
                                                 <div class="form-floating mb-3">
                                                     <label for="preco">Preço:</label>
                                                  <input class="form-control" id="preco" type="number" min="0" max="10000" step="any" name="preco"
