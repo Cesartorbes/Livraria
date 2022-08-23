@@ -43,7 +43,19 @@ switch ($dados['registro']) {
                 ':senha' => $dados['senha'],
                 ':email' => $dados['email']
             ]);
-            header('location:..\frontend\cadastrar.php');
+            echo "<html>
+                    <body>
+                    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+ 
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Parabéns',
+                            text: 'Seu cadastro foi realizado com sucesso!'
+                        }).then(function() {
+                            window.location = '../frontend/cadastrar.php';
+                        });
+                    </script></body></html>";
             
             } else{
                 die('Já existe um usuário com o mesmo email cadastrado');

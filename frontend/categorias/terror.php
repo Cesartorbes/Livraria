@@ -103,12 +103,15 @@ $banco = new Banco;
             while($row = mysqli_fetch_assoc($result)) 
             {
             $path="../".$row['filename'];
+            $descricao="../descricao.php?ID=".$row["id"];
             if($i%4==0)
             echo '<div class="row">';
             echo'
+                    
                     <div class="col-sm-6 col-md-4 ">
                         <div class="presetcategoria ">
                             <div class="presetcategoria2">
+                            <a href="'.$descricao.'">
                                 <img class="book block-center img-responsive" src="'.$path.'">
                             </div>
                             <div class="detail-box1">
