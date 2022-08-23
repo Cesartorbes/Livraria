@@ -132,43 +132,13 @@
           <div class="col-sm-6 col-md-4 ">
             <div class="box ">
               <div class="img-box">
-                <img src="images/cat1.png" alt="">
+                <img src="images/cat5.png" alt="">
               </div>
               <div class="detail-box">
                 <h5>
-                  Autobiografia
+                  Aventura
                 </h5>
-                <a href="categorias/autobiografia.php">
-                  Ver mais
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4 ">
-            <div class="box ">
-              <div class="img-box">
-                <img src="images/cat2.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Ciência
-                </h5>
-                <a href="categorias/ciencia.php">
-                  Ver mais
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4 ">
-            <div class="box ">
-              <div class="img-box">
-                <img src="images/cat3.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  História
-                </h5>
-                <a href="categorias/historia.php">
+                <a href="categorias/aventura.php">
                   Ver mais
                 </a>
               </div>
@@ -192,13 +162,13 @@
           <div class="col-sm-6 col-md-4 ">
             <div class="box ">
               <div class="img-box">
-                <img src="images/cat5.png" alt="">
+                <img src="images/cat2.png" alt="">
               </div>
               <div class="detail-box">
                 <h5>
-                  Aventura
+                  Ciência
                 </h5>
-                <a href="categorias/aventura.php">
+                <a href="categorias/ciencia.php">
                   Ver mais
                 </a>
               </div>
@@ -222,13 +192,13 @@
           <div class="col-sm-6 col-md-4 ">
             <div class="box ">
               <div class="img-box">
-                <img src="images/cat7.png" alt="">
+                <img src="images/cat3.png" alt="">
               </div>
               <div class="detail-box">
                 <h5>
-                  Romance
+                  História
                 </h5>
-                <a href="categorias/romance.php">
+                <a href="categorias/historia.php">
                   Ver mais
                 </a>
               </div>
@@ -252,6 +222,21 @@
           <div class="col-sm-6 col-md-4 ">
             <div class="box ">
               <div class="img-box">
+                <img src="images/cat7.png" alt="">
+              </div>
+              <div class="detail-box">
+                <h5>
+                  Romance
+                </h5>
+                <a href="categorias/romance.php">
+                  Ver mais
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 ">
+            <div class="box ">
+              <div class="img-box">
                 <img src="images/cat9.png" alt="">
               </div>
               <div class="detail-box">
@@ -259,6 +244,21 @@
                   Suspense
                 </h5>
                 <a href="categorias/suspense.php">
+                  Ver mais
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 ">
+            <div class="box ">
+              <div class="img-box">
+                <img src="images/cat1.png" alt="">
+              </div>
+              <div class="detail-box">
+                <h5>
+                  Terror
+                </h5>
+                <a href="categorias/terror.php">
                   Ver mais
                 </a>
               </div>

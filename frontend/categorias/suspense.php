@@ -84,21 +84,21 @@ $banco = new Banco;
                 $result = mysqli_query ($connection,$query)or die(mysqli_error($connection));
             } 
     $i=0;
-    echo '      
-        <div class="connectiontainer fluid">
-             <div class="row">
-                  <div class="col-sm-5 col-sm-offset-6 col-md-5 col-md-offset-7 col-lg-4 col-lg-offset-8">
-                       <form action="';echo $_SERVER['PHP_SELF'];echo'" method="post" class="pull-right">
-                           <label for="sort">Sort by &nbsp: &nbsp</label>
-                            <select name="sort" id="select" onchange="form.submit()">
-                                <option value="default" name="default"  selected="selected">Select</option>
-                                <option value="preco" name="preco">Low To High preco </option>
-                                <option value="precoh" name="precoh">Highest To Lowest preco </option>
-                            </select>
-                       </form>
-                  </div>
+    echo  '      
+    <div class="connectiontainer fluid">
+         <div class="row">
+              <div class="col-sm-5 col-sm-offset-6 col-md-5 col-md-offset-7 col-lg-4 col-lg-offset-8">
+                   <form action="';echo $_SERVER['PHP_SELF'];echo'" method="post" class="pull-right">
+                       <label for="sort">Ordenar por&nbsp: &nbsp</label>
+                        <select name="sort" id="select" onchange="form.submit()">
+                            <option value="default" name="default"  selected="selected"></option>
+                            <option value="preco" name="preco">Menor preço</option>
+                            <option value="precoh" name="precoh">Maior preço </option>
+                        </select>
+                   </form>
               </div>
-        </div>';
+          </div>
+    </div>';
 
         if(mysqli_num_rows($result) > 0) 
         {   

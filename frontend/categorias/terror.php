@@ -20,7 +20,7 @@ $banco = new Banco;
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Autobiografia</title>
+  <title>Terror</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="..\css/bootstrap.css" />
@@ -55,7 +55,7 @@ $banco = new Banco;
         ?>
         <div class="heading_container heading_center">
           <h2>
-            Autobiografias
+            Terror
           </h2>
         </div>
         <?php
@@ -63,7 +63,7 @@ $banco = new Banco;
     if(isset($_POST['sort']))
     {
         if($_POST['sort']=="preco")
-                {   $query = "SELECT * FROM livros WHERE categoria='autobiografia' ORDER BY preco";
+                {   $query = "SELECT * FROM livros WHERE categoria='terror' ORDER BY preco";
                     $result = mysqli_query ($connection,$query)or die(mysqli_error($connection));
                     ?>
                        <script type="text/javascript">
@@ -73,12 +73,12 @@ $banco = new Banco;
                 }
         else
         if($_POST['sort']=="precoh")
-                {   $query = "SELECT * FROM livros WHERE categoria='autobiografia' ORDER BY preco DESC";
+                {   $query = "SELECT * FROM livros WHERE categoria='terror' ORDER BY preco DESC";
                     $result = mysqli_query ($connection,$query)or die(mysqli_error($connection));
                 }
     } 
     else   
-            {   $query = "SELECT * FROM livros WHERE categoria='autobiografia'";
+            {   $query = "SELECT * FROM livros WHERE categoria='terror'";
                 $result = mysqli_query ($connection,$query)or die(mysqli_error($connection));
             } 
     $i=0;
@@ -87,11 +87,11 @@ $banco = new Banco;
              <div class="row">
                   <div class="col-sm-5 col-sm-offset-6 col-md-5 col-md-offset-7 col-lg-4 col-lg-offset-8">
                        <form action="';echo $_SERVER['PHP_SELF'];echo'" method="post" class="pull-right">
-                           <label for="sort">Sort by &nbsp: &nbsp</label>
+                           <label for="sort">Ordenar por&nbsp: &nbsp</label>
                             <select name="sort" id="select" onchange="form.submit()">
-                                <option value="default" name="default"  selected="selected">Select</option>
-                                <option value="preco" name="preco">Low To High preco </option>
-                                <option value="precoh" name="precoh">Highest To Lowest preco </option>
+                                <option value="default" name="default"  selected="selected"></option>
+                                <option value="preco" name="preco">Menor preço</option>
+                                <option value="precoh" name="precoh">Maior preço </option>
                             </select>
                        </form>
                   </div>
