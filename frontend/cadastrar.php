@@ -66,14 +66,14 @@ include_once(__DIR__ . '..\..\backend\conecta.php');
                                                 <div class="form-floating mb-3">
                                                     <label for="inputEmail">E-mail:</label>
                                                     <input class="form-control" id="inputEmail" type="email" name="email"
-                                                        placeholder="nome@exemplo.com" />
+                                                        placeholder="nome@exemplo.com" required/>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <div class="col-md-6">
                                                         <label for="senha">Senha:</label>
                                                         <div class="form-floating mb-3 mb-md-0">
                                                             <input class="form-control" type="password"
-                                                                placeholder="Crie uma Senha" name="senha" id="senha" />
+                                                                placeholder="Crie uma Senha" name="senha" id="senha" required/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -81,7 +81,7 @@ include_once(__DIR__ . '..\..\backend\conecta.php');
                                                             <label for="inputPasswordConfirm">Confirme a senha:</label>
                                                             <input class="form-control" id="inputPasswordConfirm"
                                                                 type="password" placeholder="Confirme a Senha"
-                                                                name="confirmpassword" id="confirmpassword" />
+                                                                name="confirmpassword" id="confirmpassword" required/>
                                                         </div>
                                                     </div>
                                                 </div>  

@@ -63,7 +63,7 @@ echo '
   <div class="container-fluid" id="books">
     <div class="row">
       <div class="col-sm-10 col-md-6">
-                         <img class="center-block img-responsive" src="'.$path.'" height="550px" style="padding:20px;">
+                         <img class="center-block img-responsive" src="'.$path.'" height="550px" style="padding:20px; max-width: 380px;">
       </div>
       <div class="col-sm-10 col-md-4 col-md-offset-1">
         <h2> '. $row["livro"] . '</h2>

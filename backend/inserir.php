@@ -58,11 +58,35 @@ switch ($dados['registro']) {
                     </script></body></html>";
             
             } else{
-                die('Já existe um usuário com o mesmo email cadastrado');
+                echo "<html>
+                    <body>
+                    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+ 
+                    <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'E-mail ja cadastrado.'
+                        }).then(function() {
+                            window.location = '../frontend/cadastrar.php';
+                        });
+                    </script></body></html>";
             }
             break;
         } else{
-            die("<script>alert('As senhas nâo coincidem');</script>");
+            echo "<html>
+                    <body>
+                    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+ 
+                    <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'As senhas não coicidem.'
+                        }).then(function() {
+                            window.location = '../frontend/cadastrar.php';
+                        });
+                    </script></body></html>";
         }
                 
     

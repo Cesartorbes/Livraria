@@ -108,7 +108,7 @@ if(isset($_GET['remove']))
 			                                                <img class="image-responsive block-center" src="'.$path.'" style="height :300px;"> <br>
            							                                               Titulo : '.$row['nome'].'  <br>                                                                      	 
                                                       									Autor : '.$row['autor'].' <br>                            	                                                            								
-                                                      									Preço : '.$row['preco'].' <br>
+                                                      									Preço : R$'.$row['preco'].' <br>
                                                                        <a href="carrinho.php?remove='.$row['id'].'" class="btn btn-sm" 
                                                                           style="bg-light;color:black;font-weight:800;">
                                                                           Remover
@@ -127,7 +127,7 @@ if(isset($_GET['remove']))
                                  <div class="panel col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 text-center" style="color:dark;font-weight:800;">
                                      <div class="panel-heading">TOTAL
                                      </div>
-                                      <div class="panel-body">'.$total.'
+                                      <div class="panel-body">R$'.$total.'
                                      </div>
                                  </div>
                                </div>
@@ -135,10 +135,10 @@ if(isset($_GET['remove']))
                          ';
                      echo '<div class="row justify-content-md-center baixomasntanto">
                              <div class="col-3">
-                                  <a href="categories.php" class="btn btn-lg btn-outline-secondary" style="bg-light;color:dark;font-weight:800;">Continuar comprando</a>
+                                  <a href="categories.php" class="btn btn-lg btn-outline-secondary" style="bg-light;color:dark;font-weight:800;float:right; white-space: nowrap;">Continuar comprando</a>
                              </div>
                              <div class="col-3">
-                                  <a href="carrinho.php?place=true" class="btn btn-lg btn-outline-secondary" style="bg-light;color:dark;font-weight:800;">Finalizar compra</a>
+                                  <a href="carrinho.php?place=true" class="btn btn-lg btn-outline-secondary" style="bg-light;color:dark;font-weight:800; white-space: nowrap;">Finalizar compra</a>
                              </div>
                            </div>
                            ';
@@ -161,7 +161,6 @@ if(isset($_GET['remove']))
 
 	?>
 
-    <?php include_once('footer.php'); ?>
 
 <!-- end info section -->
 
@@ -188,5 +187,7 @@ if(isset($_GET['remove']))
 <!-- End Google Map -->
 
 </body>
+
+<?php include_once('footer.php'); ?>
 
 </html>

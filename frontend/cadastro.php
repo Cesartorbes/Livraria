@@ -4,142 +4,6 @@ include_once(__DIR__ . '..\..\backend\config.php');
 include_once(__DIR__ . '..\..\backend\conecta.php'); 
 $banco = new Banco;
 
-$Revenda = FALSE;
-
-if (isset($_POST['submit'])) {
-    /*
-     * Read posted values.
-     */
-    $RevendaNome = isset($_POST['nome']) ? $_POST['nome'] : '';
-    $RevendaLivro = isset($_POST['livro']) ? $_POST['livro'] : '';
-    $RevendaDescricao = isset($_POST['descricao']) ? $_POST['descricao'] : '';
-    $RevendaPreco = isset($_POST['preco']) ? $_POST['preco'] : '';
-    $RevendaTelefone = isset($_POST['telefone']) ? $_POST['telefone'] : '';
-    $RevendaEmail = isset($_POST['email']) ? $_POST['email'] : '';
-    $RevendaCidade = isset($_POST['cidade']) ? $_POST['cidade'] : '';
-
-    /*
-     * Validate posted values.
-     */
-
-    if (empty($RevendaNome)) {
-        $errors[] = 'Coloque o seu nome';
-    }
-
-    if (empty($RevendaLivro)) {
-        $errors[] = 'Coloque o nome do livro';
-    }
-
-    if (empty($RevendaDescricao)) {
-        $errors[] = 'Coloque uma descrição sobre o livro';
-    }
-
-    if (empty($RevendaPreco)) {
-        $errors[] = 'Coloque o preço do livro';
-    } 
-
-    if (empty($RevendaTelefone)) {
-        $errors[] = 'Coloque o seu número de telefone';
-    }
-
-    if (empty($RevendaEmail)) {
-        $errors[] = 'Coloque o seu e-mail';
-    }
-        
-    if (empty($RevendaCidade)) {
-        $errors[] = 'Coloque a sua cidade';
-    }
-
-    if (!is_dir(UPLOAD_DIR)) {
-        mkdir(UPLOAD_DIR, 0777, true);
-    }
-
-    /*
-     * List of file names to be filled in by the upload script 
-     * below and to be saved in the db table "products_images" afterwards.
-     */
-    $filenamesToSave = [];
-
-    $allowedMimeTypes = explode(',', UPLOAD_ALLOWED_MIME_TYPES);
-
-    /*
-     * Upload files.
-     */
-    if (!empty($_FILES)) {
-        if (isset($_FILES['file']['error'])) {
-            foreach ($_FILES['file']['error'] as $uploadedFileKey => $uploadedFileError) {
-                if ($uploadedFileError === UPLOAD_ERR_NO_FILE) {
-                    $errors[] = 'You did not provide any files.';
-                } elseif ($uploadedFileError === UPLOAD_ERR_OK) {
-                    $uploadedFileName = basename($_FILES['file']['name'][$uploadedFileKey]);
-
-                    if ($_FILES['file']['size'][$uploadedFileKey] <= UPLOAD_MAX_FILE_SIZE) {
-                        $uploadedFileType = $_FILES['file']['type'][$uploadedFileKey];
-                        $uploadedFileTempName = $_FILES['file']['tmp_name'][$uploadedFileKey];
-
-                        $uploadedFilePath = rtrim(UPLOAD_DIR, '/') . '/' . $uploadedFileName;
-
-                        if (in_array($uploadedFileType, $allowedMimeTypes)) {
-                            if (!move_uploaded_file($uploadedFileTempName, $uploadedFilePath)) {
-                                $errors[] = 'The file "' . $uploadedFileName . '" could not be uploaded.';
-                            } else {
-                                $filenamesToSave[] = $uploadedFilePath;
-                            }
-                        } else {
-                            $errors[] = 'The extension of the file "' . $uploadedFileName . '" is not valid. Allowed extensions: JPG, JPEG, PNG, or GIF.';
-                        }
-                    } else {
-                        $errors[] = 'The size of the file "' . $uploadedFileName . '" must be of max. ' . (UPLOAD_MAX_FILE_SIZE / 1024) . ' KB';
-                    }
-                }
-            }
-        }
-    }
-    if (!isset($errors)) {
-
-        foreach ($filenamesToSave as $filename) {
-
-            $sql = 'INSERT INTO vendas (
-                nome,
-                livro,
-                descricao,
-                preco,
-                telefone,
-                email,
-                cidade,
-                filename
-            ) VALUES (
-                    ?, ?, ?, ?, ?, ?, ?, ?
-            )';
-
-        $statement = $connection->prepare($sql);
-
-        $statement->bind_param('sssdssss', $RevendaNome, $RevendaLivro, $RevendaDescricao, $RevendaPreco, $RevendaTelefone, $RevendaEmail, $RevendaCidade, $filename);
-
-        $statement->execute();
-
-        $statement->close();
-    
-        }
-
-    }
-
-    /*
-    * Close the previously opened database connection.
-    * 
-    * @link http://php.net/manual/en/mysqli.close.php
-    */
-    $connection->close();
-
-    $Revenda = TRUE;
-
-    /*
-    * Reset the posted values, so that the default ones are now showed in the form.
-    * See the "value" attribute of each html input.
-    */
-    $RevendaNome = $RevendaLivro = $RevendaDescricao = $RevendaPreco = $RevendaTelefone = $RevendaEmail = $RevendaCidade = NULL;
-}   
-
 
 ?> 
 
@@ -195,10 +59,148 @@ if (isset($_POST['submit'])) {
 
   <div class="hero_area">
     <!-- header section strats -->
-    <?php include_once('headernormal.php') ?>
+    <?php include_once('header.php') ?>
     <!-- end header section -->
   </div>
 
+  <?php 
+  $Revenda = FALSE;
+
+  if (isset($_POST['submit'])) {
+      /*
+       * Read posted values.
+       */
+      $RevendaNome = isset($_POST['nome']) ? $_POST['nome'] : '';
+      $RevendaLivro = isset($_POST['livro']) ? $_POST['livro'] : '';
+      $RevendaDescricao = isset($_POST['descricao']) ? $_POST['descricao'] : '';
+      $RevendaPreco = isset($_POST['preco']) ? $_POST['preco'] : '';
+      $RevendaTelefone = isset($_POST['telefone']) ? $_POST['telefone'] : '';
+      $RevendaEmail = isset($_POST['email']) ? $_POST['email'] : '';
+      $RevendaCidade = isset($_POST['cidade']) ? $_POST['cidade'] : '';
+  
+      /*
+       * Validate posted values.
+       */
+  
+      if (empty($RevendaNome)) {
+          $errors[] = 'Coloque o seu nome';
+      }
+  
+      if (empty($RevendaLivro)) {
+          $errors[] = 'Coloque o nome do livro';
+      }
+  
+      if (empty($RevendaDescricao)) {
+          $errors[] = 'Coloque uma descrição sobre o livro';
+      }
+  
+      if (empty($RevendaPreco)) {
+          $errors[] = 'Coloque o preço do livro';
+      } 
+  
+      if (empty($RevendaTelefone)) {
+          $errors[] = 'Coloque o seu número de telefone';
+      }
+  
+      if (empty($RevendaEmail)) {
+          $errors[] = 'Coloque o seu e-mail';
+      }
+          
+      if (empty($RevendaCidade)) {
+          $errors[] = 'Coloque a sua cidade';
+      }
+  
+      if (!is_dir(UPLOAD_DIR)) {
+          mkdir(UPLOAD_DIR, 0777, true);
+      }
+  
+      /*
+       * List of file names to be filled in by the upload script 
+       * below and to be saved in the db table "products_images" afterwards.
+       */
+      $filenamesToSave = [];
+  
+      $allowedMimeTypes = explode(',', UPLOAD_ALLOWED_MIME_TYPES);
+  
+      /*
+       * Upload files.
+       */
+      if (!empty($_FILES)) {
+          if (isset($_FILES['file']['error'])) {
+              foreach ($_FILES['file']['error'] as $uploadedFileKey => $uploadedFileError) {
+                  if ($uploadedFileError === UPLOAD_ERR_NO_FILE) {
+                      $errors[] = 'You did not provide any files.';
+                  } elseif ($uploadedFileError === UPLOAD_ERR_OK) {
+                      $uploadedFileName = basename($_FILES['file']['name'][$uploadedFileKey]);
+  
+                      if ($_FILES['file']['size'][$uploadedFileKey] <= UPLOAD_MAX_FILE_SIZE) {
+                          $uploadedFileType = $_FILES['file']['type'][$uploadedFileKey];
+                          $uploadedFileTempName = $_FILES['file']['tmp_name'][$uploadedFileKey];
+  
+                          $uploadedFilePath = rtrim(UPLOAD_DIR, '/') . '/' . $uploadedFileName;
+  
+                          if (in_array($uploadedFileType, $allowedMimeTypes)) {
+                              if (!move_uploaded_file($uploadedFileTempName, $uploadedFilePath)) {
+                                  $errors[] = 'The file "' . $uploadedFileName . '" could not be uploaded.';
+                              } else {
+                                  $filenamesToSave[] = $uploadedFilePath;
+                              }
+                          } else {
+                              $errors[] = 'The extension of the file "' . $uploadedFileName . '" is not valid. Allowed extensions: JPG, JPEG, PNG, or GIF.';
+                          }
+                      } else {
+                          $errors[] = 'The size of the file "' . $uploadedFileName . '" must be of max. ' . (UPLOAD_MAX_FILE_SIZE / 1024) . ' KB';
+                      }
+                  }
+              }
+          }
+      }
+      if (!isset($errors)) {
+  
+          foreach ($filenamesToSave as $filename) {
+  
+              $sql = 'INSERT INTO vendas (
+                  nome,
+                  livro,
+                  descricao,
+                  preco,
+                  telefone,
+                  email,
+                  cidade,
+                  filename
+              ) VALUES (
+                      ?, ?, ?, ?, ?, ?, ?, ?
+              )';
+  
+          $statement = $connection->prepare($sql);
+  
+          $statement->bind_param('sssdssss', $RevendaNome, $RevendaLivro, $RevendaDescricao, $RevendaPreco, $RevendaTelefone, $RevendaEmail, $RevendaCidade, $filename);
+  
+          $statement->execute();
+  
+          $statement->close();
+      
+          }
+  
+      }
+  
+      /*
+      * Close the previously opened database connection.
+      * 
+      * @link http://php.net/manual/en/mysqli.close.php
+      */
+      $connection->close();
+  
+      $Revenda = TRUE;
+  
+      /*
+      * Reset the posted values, so that the default ones are now showed in the form.
+      * See the "value" attribute of each html input.
+      */
+      $RevendaNome = $RevendaLivro = $RevendaDescricao = $RevendaPreco = $RevendaTelefone = $RevendaEmail = $RevendaCidade = NULL;
+  }   
+  
+?>  
   <section class="catagory_section layout_padding">
     <div class="catagory_container">
       <div class="container ">

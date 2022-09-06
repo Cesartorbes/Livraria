@@ -1,3 +1,4 @@
+
 <?php
 include_once(__DIR__ . '..\..\backend\connection.php');
 include_once(__DIR__ . '..\..\backend\config.php');
@@ -84,21 +85,21 @@ echo'
           
      ';
 echo '
-          <div class="container-fluid" id="description">
-    <div class="row">
-      <h2> Descrição </h2>
-                        <p>'.$row['descricao'] .'</p>
-                        <pre style="background:inherit;border:none;">
-                        <div class="container-fluid align-items-center justify-content-center">
-   Id do produto    '.$row["id"].'   <hr>
-   Titulo           '.$row["nome"].' <hr>
-   Autor            '.$row["autor"].' <hr>
-   Idioma Original  '.$row["idioma"].' <hr>
-   Qtd. de Páginas  '.$row["paginas"].' <hr>
-                        </pre>
-                        </div>
-    </div>
-  </div>
+<div class="container-fluid row" id="description">
+<h2> Descrição </h2> 
+      <div class="container row direita">
+                  <p>'.$row['descricao'] .'</p>
+                  <pre style="background:inherit;border:none;">
+                  </div>
+                  <div class="itens">
+Id do produto:    '.$row["id"].'   <hr> 
+Titulo:           '.$row["nome"].' <hr> 
+Autor:            '.$row["autor"].' <hr>
+Idioma Original:  '.$row["idioma"].' <hr>
+Qtd. de Páginas:  '.$row["paginas"].' <hr>
+                  </pre>
+          </div
+</div>
 ';
  
            
