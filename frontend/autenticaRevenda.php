@@ -2,7 +2,7 @@
           <div class="card-body">
               <div class="d-flex justify-content-between align-items-center">
                   <div class="me-3">
-                      <a class="text-dark stretched-link" href="..\addProduct.php">Adicionar Produto</a>
+                      <a class="text-dark stretched-link" href="cadastro.php">Adicionar Livro</a>
                   </div>
               </div>
           </div>

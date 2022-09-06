@@ -53,7 +53,7 @@ switch ($dados['registro']) {
                             title: 'Parabéns',
                             text: 'Seu cadastro foi realizado com sucesso!'
                         }).then(function() {
-                            window.location = '../frontend/cadastrar.php';
+                            window.location = '../frontend/entrar.php';
                         });
                     </script></body></html>";
             

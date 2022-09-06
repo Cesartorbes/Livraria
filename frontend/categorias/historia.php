@@ -49,7 +49,9 @@ $banco = new Banco;
     <div class="catagory_container">
       <div class="container ">
       <?php
-           if ($banco->autentica($_SESSION["usuario_id"])) {
+
+           if (isset($_SESSION["usuario_id"])){
+             $banco->autentica($_SESSION["usuario_id"]);
              include_once('..\autentica.php');
            }
         ?>
@@ -98,32 +100,58 @@ $banco = new Banco;
           </div>
     </div>';
 
-        if(mysqli_num_rows($result) > 0) 
-        {   
-            while($row = mysqli_fetch_assoc($result)) 
-            {
-            $path="../".$row['filename'];
-            if($i%4==0)
-            echo '<div class="row">';
-            echo'
-                    <div class="col-sm-6 col-md-4 ">
-                        <div class="presetcategoria ">
-                            <div class="presetcategoria2">
-                                <img class="book block-center img-responsive" src="'.$path.'">
-                            </div>
-                            <div class="detail-box1">
-                            <hr>
-                            ' . "Livro: ". $row["nome"] . '<br>
-                            ' . "Autor: ".$row["autor"] . '<br>
-                            ' . "Preço: R$:".$row["preco"] .'  &nbsp
-                            </div>
-                    </div>
-                </div>
+    if(mysqli_num_rows($result) > 0) 
+    {   
+        while($row = mysqli_fetch_assoc($result)) 
+        {
+        $path="../".$row['filename'];
+        $descricao="../descricao.php?ID=".$row["id"];
+        if($i%3==0)
+        echo '<div class="row">';
+        if ($banco->autentica($_SESSION["usuario_id"])) {
+        echo'
                 
-               </a> ';
-            $i++;
-            if($i%4==0)
-            echo '</div>';
+                <div class="col-sm-6 col-md-4 ">
+                    <div class="presetcategoria ">
+                        <div class="presetcategoria2">
+                        <a href="'.$descricao.'">
+                            <img class="book block-center img-responsive" src="'.$path.'">
+                        </div>
+                        <div class="detail-box1">
+                        <hr>
+                        ' . "Livro: ". $row["nome"] . '<br>
+                        ' . "Autor: ".$row["autor"] . '<br>
+                        ' . "Preço: R$:".$row["preco"] .'  &nbsp
+                        </div>
+                        <li><a class="dropdown-item" href=../../backend/excluir.php?registro=2&id=' . $row["id"] . '>Excluir Produto</a></li> 
+                </div>
+            </div>
+            
+           </a> ';
+        }
+        else{
+          echo'
+                
+                <div class="col-sm-6 col-md-4 ">
+                    <div class="presetcategoria ">
+                        <div class="presetcategoria2">
+                        <a href="'.$descricao.'">
+                            <img class="book block-center img-responsive" src="'.$path.'">
+                        </div>
+                        <div class="detail-box1">
+                        <hr>
+                        ' . "Livro: ". $row["nome"] . '<br>
+                        ' . "Autor: ".$row["autor"] . '<br>
+                        ' . "Preço: R$:".$row["preco"] .'  &nbsp
+                        </div>
+                </div>
+            </div>
+            
+           </a> ';
+        }
+        $i++;
+        if($i%3==0)
+        echo '</div>';
             }
         }
     echo '</div>';

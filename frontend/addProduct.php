@@ -1,5 +1,5 @@
 <?php 
-session_start();
+
 include_once(__DIR__ . '..\..\backend\connection.php');
 include_once(__DIR__ . '..\..\backend\config.php');
 
@@ -14,6 +14,8 @@ if (isset($_POST['submit'])) {
     $LivroAutor = isset($_POST['autor']) ? $_POST['autor'] : '';
     $LivroPreco = isset($_POST['preco']) ? $_POST['preco'] : '';
     $LivroDescricao = isset($_POST['descricao']) ? $_POST['descricao'] : '';
+    $LivroPaginas = isset($_POST['paginas']) ? $_POST['paginas'] : '';
+    $LivroIdioma = isset($_POST['idioma']) ? $_POST['idioma'] : '';
 
     /*
      * Validate posted values.
@@ -37,6 +39,14 @@ if (isset($_POST['submit'])) {
 
     if (empty($LivroDescricao)) {
         $errors[] = 'Coloque a descrição do livro';
+    }
+
+    if (empty($LivroPaginas)) {
+        $errors[] = 'Coloque a quantidade de páginas do livro';
+    }
+        
+    if (empty($LivroIdioma)) {
+        $errors[] = 'Coloque a quantidade de páginas do livro';
     }
 
     /*
@@ -107,14 +117,16 @@ if (isset($_POST['submit'])) {
                     autor,
                     descricao,
                     preco,
-                    filename
+                    filename,
+                    paginas,
+                    idioma
                 ) VALUES (
-                        ?, ?, ?, ?, ?, ?
+                        ?, ?, ?, ?, ?, ?, ?, ?
                 )';
 
             $statement = $connection->prepare($sql);
 
-            $statement->bind_param('ssssds', $LivroCategoria ,$LivroNome, $LivroAutor, $LivroDescricao, $LivroPreco, $filename);
+            $statement->bind_param('ssssdsds', $LivroCategoria ,$LivroNome, $LivroAutor, $LivroDescricao, $LivroPreco, $filename, $LivroPaginas, $LivroIdioma);
 
             $statement->execute();
 
@@ -173,7 +185,7 @@ if (isset($_POST['submit'])) {
 
   <div class="hero_area">
     <!-- header section strats -->
-    <?php include_once('header.php') ?>
+    <?php include_once('headernormal.php') ?>
     <!-- end header section -->
   </div>
 
@@ -197,18 +209,18 @@ if (isset($_POST['submit'])) {
                                                 <div class="form-floating mb-3">
                                                     <label for="nomelivro">Nome do livro:</label>
                                                     <input class="form-control" id="nome" type="text" name="nome"
-                                                        placeholder="Insira o nome do livro" required value="<?php echo isset($LivroNome) ? $LivroNome : ''; ?>">
+                                                        placeholder="Insira o nome do livro" value="<?php echo isset($LivroNome) ? $LivroNome : ''; ?>">
                                                 </div>
                                                 <div class="form-floating mb-3">
                                                     <label for="categoria">Categoria:</label>
                                                     <input class="form-control" id="categoria" type="text" name="categoria"
-                                                     placeholder="Insira a categoria do livro" value="<?php echo isset($LivroCategoria) ? $LivroCategoria : ''; ?>"/>
+                                                     placeholder="Insira a categoria do livro"  required value="<?php echo isset($LivroCategoria) ? $LivroCategoria : ''; ?>"/>
                                                     <label class="texto">Adicionar apenas categorias possiveis: aventura, biografia, ciencia, fantasia, historia, infantil, romance, suspense e terror
                                                     </label> 
                                                 <div class="form-floating mb-3">
                                                     <label for="preco">Autor:</label>
                                                  <input class="form-control" id="autor" type="text" name="autor"
-                                                     placeholder="Insira o nome do autor" value="<?php echo isset($LivroAutor) ? $LivroAutor : ''; ?>"/>
+                                                     placeholder="Insira o nome do autor"  required value="<?php echo isset($LivroAutor) ? $LivroAutor : ''; ?>"/>
                                                 </div>   
                                                 <div class="form-floating mb-3">
                                                     <label for="descricao">Descrição do livro:</label>
@@ -218,8 +230,18 @@ if (isset($_POST['submit'])) {
                                                 <div class="form-floating mb-3">
                                                     <label for="preco">Preço:</label>
                                                  <input class="form-control" id="preco" type="number" min="0" max="10000" step="any" name="preco"
-                                                     placeholder="Insira o nome do autor" value="<?php echo isset($LivroPreco) ? $LivroPreco : ''; ?>"/>
-                                                </div>      
+                                                     placeholder="Insira o preço do livro"  required  value="<?php echo isset($LivroPreco) ? $LivroPreco : ''; ?>"/>
+                                                </div>    
+                                                <div class="form-floating mb-3">
+                                                    <label for="paginas">Quantidade de páginas:</label>
+                                                 <input class="form-control" id="paginas" type="number" min="0" max="10000" step="any" name="paginas"
+                                                     placeholder="Insira a quantidade de páginas do livro"  required value="<?php echo isset($LivroPaginas) ? $LivroPaginas : ''; ?>"/>
+                                                </div>                                                      
+                                                <div class="form-floating mb-3">
+                                                    <label for="idioma">Idioma:</label>
+                                                 <input class="form-control" id="idioma" type="text" name="idioma"
+                                                     placeholder="Insira o Idioma do livro"  required value="<?php echo isset($LivroIdioma) ? $LivroIdioma : ''; ?>"/>
+                                                </div>     
                                                 <div class="form-floating mb-3">
                                                     <label for="file">Images</label>
                                                     <input type="file" id="file" name="file[]" multiple>
@@ -230,10 +252,10 @@ if (isset($_POST['submit'])) {
                                                 </div>
                                             </form>
                                         </div>
-                                        <div class="card-footer text-center py-3">                       
+                                    </div>
+                                    <div class="card-footer text-center py-3">                       
                                             <div class="small"></div>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -4,6 +4,11 @@ body {
   color: #0c0c0c;
   background-color: #ffffff;
   overflow-x: hidden;
+  height: 100%;
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
 }
 
 .layout_padding {
@@ -932,4 +937,80 @@ a:focus {
 .texto{
   font-family: "Times New Roman", Times, serif;
   word-wrap:break-word;
+}
+
+.decricao{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.revenda{
+  display: block;
+  padding: 25px;
+  background-color: #f1f2f3;
+  border-radius: 2%;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.imagemRevenda{
+  width: 200px;
+  min-width: 200px;
+  height: 250px;
+
+}
+
+.conteudoRevenda{
+  width: 50%; 
+  margin : 50px 280px;
+}
+
+.listaRevenda{
+  width: 40%;
+  display: inline-block;
+}
+
+.dados{
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.excluir{
+  background-color: #f1f2f3;
+  display: inline-block;
+}
+
+.excluir:hover {
+  background-color: #f1f2f3;
+  color: black;
+  cursor: pointer;
+}
+
+a{
+  color: black;
+}
+
+.fixarRodape {
+  position: absolute;
+  width: 100%;
+
+}
+
+.baixo{
+  margin-top: 35%;
+  float: both;
+  margin-bottom: 5%;
+}
+
+.baixomasntanto{
+  float: none;
+  margin-top: 2.5%;
+  margin-bottom: 5%;
+}
+
+.baixomasntanto2{
+  margin-top: 20px;
+  float: none;
 }

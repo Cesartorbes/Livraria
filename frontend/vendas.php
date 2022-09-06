@@ -20,7 +20,7 @@ $banco = new Banco;
   <meta name="description" content="" />
   <meta name="author" content="" />
  
-  <title>Descrição do produto</title>
+  <title>Descrição da venda</title>
  
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -51,7 +51,7 @@ $banco = new Banco;
         <?php
    
     $descricao=$_GET['ID'];
-    $query = "SELECT * FROM livros WHERE id='$descricao'";
+    $query = "SELECT * FROM vendas WHERE id='$descricao'";
     $result = mysqli_query ($connection,$query)or die(mysql_error());
  
         if(mysqli_num_rows($result) > 0)
@@ -59,7 +59,6 @@ $banco = new Banco;
             while($row = mysqli_fetch_assoc($result))
             {
             $path=$row['filename'];
-            $target="carrinho.php?ID=".$descricao."&";
 echo '
   <div class="container-fluid" id="books">
     <div class="row">
@@ -67,14 +66,12 @@ echo '
                          <img class="center-block img-responsive" src="'.$path.'" height="550px" style="padding:20px;">
       </div>
       <div class="col-sm-10 col-md-4 col-md-offset-1">
-        <h2> '. $row["nome"] . '</h2>
+        <h2> '. $row["livro"] . '</h2>
                                 <span style="color:#00B9F5;">
-                                 '.$row["autor"].'
+                                Vendedor: '.$row["nome"].'
                                 </span>
         <hr>            
-                                <a id="buyLink" href="'.$target.'" class="btn btn-lg btn-outline-secondary" style="padding:10px;color:dark;text-decoration:none;"> 
-                                    Adicionar ao carrinho por R$ '.$row["preco"] .' <br>
-                                 </a> ';
+                                <span style="font-weight:bold;"> R$ '.$row["preco"].' </span>';
                                
 echo'                          
  
@@ -91,10 +88,11 @@ echo '
                         <pre style="background:inherit;border:none;">
                         <div class="container-fluid align-items-center justify-content-center">
    Id do produto    '.$row["id"].'   <hr>
-   Titulo           '.$row["nome"].' <hr>
-   Autor            '.$row["autor"].' <hr>
-   Idioma Original  '.$row["idioma"].' <hr>
-   Qtd. de Páginas  '.$row["paginas"].' <hr>
+   Livro            '.$row["livro"].' <hr>
+   Vendedor         '.$row["nome"].' <hr>
+   Telefone         '.$row["telefone"].' <hr>
+   E-mail           '.$row["email"].' <hr>
+   Cidade           '.$row["cidade"].' <hr>
                         </pre>
                         </div>
     </div>

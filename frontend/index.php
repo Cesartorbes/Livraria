@@ -43,27 +43,6 @@
                 <div class="col-md-6">
                   <div class="detail-box">
                     <h1>
-                      Livros populares!         
-                    </h1>
-                    <a href="populares.php">
-                      Ver mais
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="img-box">
-                    <img src="images/slider-img.png" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="detail-box">
-                    <h1>
                      Autores populares!
                     </h1>
                     <a href="autores.php">

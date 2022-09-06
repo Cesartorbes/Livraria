@@ -1,3 +1,4 @@
+
 <?php echo('<section class="info_section layout_padding2">
     <div class="container">
       <div class="row">
@@ -7,7 +8,7 @@
               Sobre nós!
             </h4>
             <p>
-              mudar dps
+              Loja e Revendas de livros!
             </p>
             <div class="info_social">
               <a href="https://www.facebook.com/Cristiano">
@@ -38,7 +39,7 @@
               <a href="">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <span>
-                  demo@gmail.com
+                  bookstore@gmail.com
                 </span>
               </a>
             </div>

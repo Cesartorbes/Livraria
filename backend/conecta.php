@@ -21,4 +21,10 @@ function autentica($usuario){
     $query = $conn->query('SELECT * FROM usuario WHERE numero IS NOT NULL AND usuario_id = ' . $usuario);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function usuario($usuario){
+    $conn = $this->conectar();
+    $query = $conn->query('SELECT * FROM usuario WHERE usuario_id = ' . $usuario);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
 }
