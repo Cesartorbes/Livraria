@@ -10,24 +10,67 @@ try{
 
 switch ($dados['registro']) {
     case 1:
-        $query = $conn->prepare('SELECT * FROM categorias WHERE categoria = :categoria AND nomelivro = :nomelivro');
-        $query->execute([
-            ':nomelivro' => $dados['nomelivro'],         
-            ':categoria' => $dados['categoria']           
-        ]);
-        if($query->fetch(PDO::FETCH_ASSOC) == null){
-            $query = $conn->prepare('INSERT INTO categorias (nomelivro, categoria, autor, preco) VALUES (:nomelivro, :categoria, :autor, :preco);');
+        if($dados['senha'] == $dados['confirmpassword']){
+            $query = $conn->prepare('SELECT * FROM usuario WHERE email = :email');
             $query->execute([
-                ':nomelivro' => $dados['nomelivro'],
-                ':categoria' => $dados['categoria'],             
-                ':autor' => $dados['autor'],
-                ':preco' => $dados['preco']
+                ':email' => $dados['email']           
             ]);
-            header('location:..\frontend\adicionar.php');
+            // Se houver um item com esse nome no banco, ele não insere
+            if($query->fetch(PDO::FETCH_ASSOC) == null){
+                $query = $conn->prepare('INSERT INTO usuario (nome, senha, email, cidade, telefone, numero) VALUES (:nome, :senha, :email, :cidade, :telefone, :numero);');
+            $query->execute([
+                ':nome' => $dados['nome'],
+                ':senha' => $dados['senha'],
+                ':email' => $dados['email'],
+                ':cidade' => $dados['cidade'],
+                ':telefone' => $dados['telefone'],
+                ':numero' => $dados['numero'],
+            ]);
+            echo "<html>
+                    <body>
+                    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+ 
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Parabéns',
+                            text: 'Seu cadastro foi realizado com sucesso!'
+                        }).then(function() {
+                            window.location = '../frontend/usuarios.php';
+                        });
+                    </script></body></html>";
+            
+            } else{
+                echo "<html>
+                    <body>
+                    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+ 
+                    <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'E-mail ja cadastrado.'
+                        }).then(function() {
+                            window.location = '../frontend/usuarios.php';
+                        });
+                    </script></body></html>";
+            }
+            break;
         } else{
-            die('Já existe um livro com o mesmo nome cadastrado');
+            echo "<html>
+                    <body>
+                    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+ 
+                    <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'As senhas não coicidem.'
+                        }).then(function() {
+                            window.location = '../frontend/usuarios.php';
+                        });
+                    </script></body></html>";
         }
-        break;
 
     case 2:
         if($dados['senha'] == $dados['confirmpassword']){
@@ -37,11 +80,13 @@ switch ($dados['registro']) {
             ]);
             // Se houver um item com esse nome no banco, ele não insere
             if($query->fetch(PDO::FETCH_ASSOC) == null){
-                $query = $conn->prepare('INSERT INTO usuario (nome, senha, email) VALUES (:nome, :senha, :email);');
+                $query = $conn->prepare('INSERT INTO usuario (nome, senha, email, cidade, telefone) VALUES (:nome, :senha, :email, :cidade, :telefone);');
             $query->execute([
                 ':nome' => $dados['nome'],
                 ':senha' => $dados['senha'],
-                ':email' => $dados['email']
+                ':email' => $dados['email'],
+                ':cidade' => $dados['cidade'],
+                ':telefone' => $dados['telefone'],
             ]);
             echo "<html>
                     <body>

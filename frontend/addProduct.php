@@ -3,153 +3,6 @@
 include_once(__DIR__ . '..\..\backend\connection.php');
 include_once(__DIR__ . '..\..\backend\config.php');
 
-$livroSaved = FALSE;
-
-if (isset($_POST['submit'])) {
-    /*
-     * Read posted values.
-     */
-    $LivroCategoria = isset($_POST['categoria']) ? $_POST['categoria'] : '';
-    $LivroNome = isset($_POST['nome']) ? $_POST['nome'] : '';
-    $LivroAutor = isset($_POST['autor']) ? $_POST['autor'] : '';
-    $LivroPreco = isset($_POST['preco']) ? $_POST['preco'] : '';
-    $LivroDescricao = isset($_POST['descricao']) ? $_POST['descricao'] : '';
-    $LivroPaginas = isset($_POST['paginas']) ? $_POST['paginas'] : '';
-    $LivroIdioma = isset($_POST['idioma']) ? $_POST['idioma'] : '';
-
-    /*
-     * Validate posted values.
-     */
-
-    if (empty($LivroCategoria)) {
-        $errors[] = 'Coloque uma categoria';
-    }
-
-    if (empty($LivroNome)) {
-        $errors[] = 'Coloque o nome do livro';
-    }
-
-    if (empty($LivroAutor)) {
-        $errors[] = 'Coloque o autor do livro';
-    }
-
-    if (empty($LivroPreco)) {
-        $errors[] = 'Coloque o preço do livro';
-    } 
-
-    if (empty($LivroDescricao)) {
-        $errors[] = 'Coloque a descrição do livro';
-    }
-
-    if (empty($LivroPaginas)) {
-        $errors[] = 'Coloque a quantidade de páginas do livro';
-    }
-        
-    if (empty($LivroIdioma)) {
-        $errors[] = 'Coloque a quantidade de páginas do livro';
-    }
-
-    /*
-     * Create "uploads" directory if it doesn't exist.
-     */
-    if (!is_dir(UPLOAD_DIR)) {
-        mkdir(UPLOAD_DIR, 0777, true);
-    }
-
-    /*
-     * List of file names to be filled in by the upload script 
-     * below and to be saved in the db table "products_images" afterwards.
-     */
-    $filenamesToSave = [];
-
-    $allowedMimeTypes = explode(',', UPLOAD_ALLOWED_MIME_TYPES);
-
-    /*
-     * Upload files.
-     */
-    if (!empty($_FILES)) {
-        if (isset($_FILES['file']['error'])) {
-            foreach ($_FILES['file']['error'] as $uploadedFileKey => $uploadedFileError) {
-                if ($uploadedFileError === UPLOAD_ERR_NO_FILE) {
-                    $errors[] = 'You did not provide any files.';
-                } elseif ($uploadedFileError === UPLOAD_ERR_OK) {
-                    $uploadedFileName = basename($_FILES['file']['name'][$uploadedFileKey]);
-
-                    if ($_FILES['file']['size'][$uploadedFileKey] <= UPLOAD_MAX_FILE_SIZE) {
-                        $uploadedFileType = $_FILES['file']['type'][$uploadedFileKey];
-                        $uploadedFileTempName = $_FILES['file']['tmp_name'][$uploadedFileKey];
-
-                        $uploadedFilePath = rtrim(UPLOAD_DIR, '/') . '/' . $uploadedFileName;
-
-                        if (in_array($uploadedFileType, $allowedMimeTypes)) {
-                            if (!move_uploaded_file($uploadedFileTempName, $uploadedFilePath)) {
-                                $errors[] = 'The file "' . $uploadedFileName . '" could not be uploaded.';
-                            } else {
-                                $filenamesToSave[] = $uploadedFilePath;
-                            }
-                        } else {
-                            $errors[] = 'The extension of the file "' . $uploadedFileName . '" is not valid. Allowed extensions: JPG, JPEG, PNG, or GIF.';
-                        }
-                    } else {
-                        $errors[] = 'The size of the file "' . $uploadedFileName . '" must be of max. ' . (UPLOAD_MAX_FILE_SIZE / 1024) . ' KB';
-                    }
-                }
-            }
-        }
-    }
-
-    /*
-     * Save product and images.
-     */
-     if (!isset($errors)) {
-        /*
-         * The SQL statement to be prepared. Notice the so-called markers, 
-         * e.g. the "?" signs. They will be replaced later with the 
-         * corresponding values when using mysqli_stmt::bind_param.
-         * 
-         * @link http://php.net/manual/en/mysqli.prepare.php
-         */
-        
-        foreach ($filenamesToSave as $filename) {
-            $sql = 'INSERT INTO livros (
-                    categoria,
-                    nome,
-                    autor,
-                    descricao,
-                    preco,
-                    filename,
-                    paginas,
-                    idioma
-                ) VALUES (
-                        ?, ?, ?, ?, ?, ?, ?, ?
-                )';
-
-            $statement = $connection->prepare($sql);
-
-            $statement->bind_param('ssssdsds', $LivroCategoria ,$LivroNome, $LivroAutor, $LivroDescricao, $LivroPreco, $filename, $LivroPaginas, $LivroIdioma);
-
-            $statement->execute();
-
-            $statement->close();
-        }
-
-        /*
-         * Close the previously opened database connection.
-         * 
-         * @link http://php.net/manual/en/mysqli.close.php
-         */
-        $connection->close();
-
-        $livroSaved = TRUE;
-
-        /*
-         * Reset the posted values, so that the default ones are now showed in the form.
-         * See the "value" attribute of each html input.
-         */
-        $LivroCategoria = $LivroNome = $LivroAutor = $LivroDescricao = $LivroPreco = NULL;
-    }   
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -185,9 +38,172 @@ if (isset($_POST['submit'])) {
 
   <div class="hero_area">
     <!-- header section strats -->
-    <?php include_once('headernormal.php') ?>
+    <?php include_once('header.php') ?>
     <!-- end header section -->
   </div>
+
+  <?php
+  $livroSaved = FALSE;
+
+  if (isset($_POST['submit'])) {
+      /*
+       * Read posted values.
+       */
+      $LivroCategoria = isset($_POST['categoria']) ? $_POST['categoria'] : '';
+      $LivroNome = isset($_POST['nome']) ? $_POST['nome'] : '';
+      $LivroAutor = isset($_POST['autor']) ? $_POST['autor'] : '';
+      $LivroPreco = isset($_POST['preco']) ? $_POST['preco'] : '';
+      $LivroDescricao = isset($_POST['descricao']) ? $_POST['descricao'] : '';
+      $LivroPaginas = isset($_POST['paginas']) ? $_POST['paginas'] : '';
+      $LivroIdioma = isset($_POST['idioma']) ? $_POST['idioma'] : '';
+  
+      /*
+       * Validate posted values.
+       */
+  
+      if (empty($LivroCategoria)) {
+          $errors[] = 'Coloque uma categoria';
+      }
+  
+      if (empty($LivroNome)) {
+          $errors[] = 'Coloque o nome do livro';
+      }
+  
+      if (empty($LivroAutor)) {
+          $errors[] = 'Coloque o autor do livro';
+      }
+  
+      if (empty($LivroPreco)) {
+          $errors[] = 'Coloque o preço do livro';
+      } 
+  
+      if (empty($LivroDescricao)) {
+          $errors[] = 'Coloque a descrição do livro';
+      }
+  
+      if (empty($LivroPaginas)) {
+          $errors[] = 'Coloque a quantidade de páginas do livro';
+      }
+          
+      if (empty($LivroIdioma)) {
+          $errors[] = 'Coloque a quantidade de páginas do livro';
+      }
+  
+      /*
+       * Create "uploads" directory if it doesn't exist.
+       */
+      if (!is_dir(UPLOAD_DIR)) {
+          mkdir(UPLOAD_DIR, 0777, true);
+      }
+  
+      /*
+       * List of file names to be filled in by the upload script 
+       * below and to be saved in the db table "products_images" afterwards.
+       */
+      $filenamesToSave = [];
+  
+      $allowedMimeTypes = explode(',', UPLOAD_ALLOWED_MIME_TYPES);
+  
+      /*
+       * Upload files.
+       */
+      if (!empty($_FILES)) {
+          if (isset($_FILES['file']['error'])) {
+              foreach ($_FILES['file']['error'] as $uploadedFileKey => $uploadedFileError) {
+                  if ($uploadedFileError === UPLOAD_ERR_NO_FILE) {
+                      $errors[] = 'You did not provide any files.';
+                  } elseif ($uploadedFileError === UPLOAD_ERR_OK) {
+                      $uploadedFileName = basename($_FILES['file']['name'][$uploadedFileKey]);
+  
+                      if ($_FILES['file']['size'][$uploadedFileKey] <= UPLOAD_MAX_FILE_SIZE) {
+                          $uploadedFileType = $_FILES['file']['type'][$uploadedFileKey];
+                          $uploadedFileTempName = $_FILES['file']['tmp_name'][$uploadedFileKey];
+  
+                          $uploadedFilePath = rtrim(UPLOAD_DIR, '/') . '/' . $uploadedFileName;
+  
+                          if (in_array($uploadedFileType, $allowedMimeTypes)) {
+                              if (!move_uploaded_file($uploadedFileTempName, $uploadedFilePath)) {
+                                  $errors[] = 'The file "' . $uploadedFileName . '" could not be uploaded.';
+                              } else {
+                                  $filenamesToSave[] = $uploadedFilePath;
+                              }
+                          } else {
+                              $errors[] = 'The extension of the file "' . $uploadedFileName . '" is not valid. Allowed extensions: JPG, JPEG, PNG, or GIF.';
+                          }
+                      } else {
+                          $errors[] = 'The size of the file "' . $uploadedFileName . '" must be of max. ' . (UPLOAD_MAX_FILE_SIZE / 1024) . ' KB';
+                      }
+                  }
+              }
+          }
+      }
+  
+      /*
+       * Save product and images.
+       */
+       if (!isset($errors)) {
+          /*
+           * The SQL statement to be prepared. Notice the so-called markers, 
+           * e.g. the "?" signs. They will be replaced later with the 
+           * corresponding values when using mysqli_stmt::bind_param.
+           * 
+           * @link http://php.net/manual/en/mysqli.prepare.php
+           */
+          
+          foreach ($filenamesToSave as $filename) {
+              $sql = 'INSERT INTO livros (
+                      categoria,
+                      nome,
+                      autor,
+                      descricao,
+                      preco,
+                      filename,
+                      paginas,
+                      idioma
+                  ) VALUES (
+                          ?, ?, ?, ?, ?, ?, ?, ?
+                  )';
+  
+              $statement = $connection->prepare($sql);
+  
+              $statement->bind_param('ssssdsds', $LivroCategoria ,$LivroNome, $LivroAutor, $LivroDescricao, $LivroPreco, $filename, $LivroPaginas, $LivroIdioma);
+  
+              $statement->execute();
+  
+              $statement->close();
+
+              echo "<html>
+                    <body>
+                    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+ 
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Produto cadastrado',
+                            text: 'Produto cadastrado com sucesso!'
+                        }).then(function() {
+                            window.location = 'addProduct.php';
+                        });
+                    </script></body></html>";
+          }
+  
+          /*
+           * Close the previously opened database connection.
+           * 
+           * @link http://php.net/manual/en/mysqli.close.php
+           */
+          $connection->close();
+  
+          $livroSaved = TRUE;
+  
+          /*
+           * Reset the posted values, so that the default ones are now showed in the form.
+           * See the "value" attribute of each html input.
+           */
+          $LivroCategoria = $LivroNome = $LivroAutor = $LivroDescricao = $LivroPreco = NULL;
+      }   
+  }
+  ?>
 
   <section class="catagory_section layout_padding">
     <div class="catagory_container">
@@ -229,12 +245,12 @@ if (isset($_POST['submit'])) {
                                                 </div>
                                                 <div class="form-floating mb-3">
                                                     <label for="preco">Preço:</label>
-                                                 <input class="form-control" id="preco" type="number" min="0" max="10000" step="any" name="preco"
+                                                 <input class="form-control" id="preco" type="number" min="0" step="any" name="preco"
                                                      placeholder="Insira o preço do livro"  required  value="<?php echo isset($LivroPreco) ? $LivroPreco : ''; ?>"/>
                                                 </div>    
                                                 <div class="form-floating mb-3">
                                                     <label for="paginas">Quantidade de páginas:</label>
-                                                 <input class="form-control" id="paginas" type="number" min="0" max="10000" step="any" name="paginas"
+                                                 <input class="form-control" id="paginas" type="number" min="0" step="any" name="paginas"
                                                      placeholder="Insira a quantidade de páginas do livro"  required value="<?php echo isset($LivroPaginas) ? $LivroPaginas : ''; ?>"/>
                                                 </div>                                                      
                                                 <div class="form-floating mb-3">
@@ -243,7 +259,7 @@ if (isset($_POST['submit'])) {
                                                      placeholder="Insira o Idioma do livro"  required value="<?php echo isset($LivroIdioma) ? $LivroIdioma : ''; ?>"/>
                                                 </div>     
                                                 <div class="form-floating mb-3">
-                                                    <label for="file">Images</label>
+                                                    <label for="file">Imagem:</label>
                                                     <input type="file" id="file" name="file[]" multiple>
                                                 </div>  
                                                 <div class="mt-4 mb-0">

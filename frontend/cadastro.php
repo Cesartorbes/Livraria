@@ -13,7 +13,7 @@ $banco = new Banco;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
 <script type="text/javascript">
-    $("#telefone").mask("(00) 0000-0000");
+    $("#telefone").mask("(00) 00000-0000");
     $(document).ready(function()
 {	$('#email').focusout(function()
 	{	$('#email').filter(function()
@@ -65,6 +65,13 @@ $banco = new Banco;
 
   <?php 
   $Revenda = FALSE;
+
+  $id=$_SESSION['usuario_id'];
+    $query = "SELECT nome, email, cidade, telefone from usuario where usuario_id = $id";
+    $result = mysqli_query($connection,$query)or die(mysql_error());
+    $row = mysqli_fetch_assoc($result);
+
+
 
   if (isset($_POST['submit'])) {
       /*
@@ -179,6 +186,21 @@ $banco = new Banco;
           $statement->execute();
   
           $statement->close();
+
+          echo "<html>
+          <body>
+          <script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+
+          <script>
+              Swal.fire({
+                  icon: 'success',
+                  title: 'Livro cadastrado',
+                  text: 'Livro para venda cadastrado com sucesso!'
+              }).then(function() {
+                  window.location = 'revenda.php';
+              });
+          </script></body></html>";
+            
       
           }
   
@@ -198,8 +220,8 @@ $banco = new Banco;
       * See the "value" attribute of each html input.
       */
       $RevendaNome = $RevendaLivro = $RevendaDescricao = $RevendaPreco = $RevendaTelefone = $RevendaEmail = $RevendaCidade = NULL;
-  }   
-  
+  }  
+
 ?>  
   <section class="catagory_section layout_padding">
     <div class="catagory_container">
@@ -221,13 +243,17 @@ $banco = new Banco;
                                                 <div class="form-floating mb-3">
                                                     <label for="nome">Nome do vendedor:</label>
                                                     <input class="form-control" id="nome" type="text" name="nome"
-                                                        placeholder="Insira o nome do vendedor" required value="<?php echo isset($RevendaNome) ? $RevendaNome : ''; ?>"/>
+                                                        placeholder="Insira o nome do vendedor" required value="<?php  echo $row['nome']  ?>" readonly="readonly" />
                                                 </div>
                                                 <div class="form-floating mb-3">
                                                     <label for="livro">Nome do livro:</label>
                                                     <input class="form-control" id="livro" type="text" name="livro"
                                                         placeholder="Insira o nome do livro"  required value="<?php echo isset($RevendaLivro) ? $RevendaLivro : ''; ?>"/>
                                                 </div>
+                                                <div class="form-floating mb-3">
+                                                    <label for="file">Imagem:</label>
+                                                    <input type="file" id="file" name="file[]" multiple>
+                                                </div>  
                                                 <div class="form-floating mb-3">
                                                     <label for="descricao">Descrição</label>
                                                     <input class="form-control" id="descricao" type="text" name="descricao"
@@ -244,24 +270,20 @@ $banco = new Banco;
                                                         <label for="telefone">Telefone:</label>
                                                         <input class="form-control"
                                                             type="text" placeholder="Insira o seu telefone"
-                                                            name="telefone" id="telefone"  required value="<?php echo isset($RevendaTelefone) ? $RevendaTelefone : ''; ?>"/>
+                                                            name="telefone" id="telefone"  required value="<?php   echo $row['telefone'] ?>"/>
                                                     </div>
                                                 </div>
                                                 </div>
                                                 <div class="form-floating mb-3">
                                                     <label for="preco">E-mail:</label>
                                                     <input class="form-control" id="email" type="text" name="email"
-                                                        placeholder="Insira seu email"  required  value="<?php echo isset($RevendaEmail) ? $RevendaEmail : ''; ?>"/>
+                                                        placeholder="Insira seu email"  required  value="<?php echo $row['email'] ?>"/>
                                                 </div>   
                                                 <div class="form-floating mb-3">
                                                     <label for="preco">Cidade:</label>
                                                     <input class="form-control" id="cidade" type="text" name="cidade"
-                                                        placeholder="Insira a sua cidade" required  value="<?php echo isset($RevendaCidade) ? $RevendaCidade : ''; ?>"/>
+                                                        placeholder="Insira a sua cidade" required  value="<?php echo $row['cidade'] ?>"/>
                                                 </div> 
-                                                <div class="form-floating mb-3">
-                                                    <label for="file">Imagem:</label>
-                                                    <input type="file" id="file" name="file[]" multiple>
-                                                </div>  
                                                 <div class="mt-4 mb-0">
                                                     <div class="d-grid">
                                                         <button type="submit" name="submit" class="btn btn-primary btn-block" href="revenda.php">Inserir venda</button></div>

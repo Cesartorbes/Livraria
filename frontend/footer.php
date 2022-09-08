@@ -1,7 +1,7 @@
 
 <?php echo('
 <section class="info_section layout_padding2 fixarRodape">
-<footer class="d-flex flex-wrap">
+<footer>
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-lg-3 info-col">
@@ -51,5 +51,6 @@
       </div>
     </div>
     </footer>
-  </section>
-');
+  </section>');
+
+  

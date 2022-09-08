@@ -17,6 +17,6 @@ switch ($dados['registro']) {
         $query->execute([
             ':id' => $dados['id'],
         ]);
-        header('location:..\frontend\index.php');
+        header('location:..\frontend\categories.php');
         break;
 }

@@ -53,7 +53,7 @@
               </h2>
             </div>
             <p>
-              fort
+              Loja de vendas e Revendas de livros
             </p>
           </div>
         </div>

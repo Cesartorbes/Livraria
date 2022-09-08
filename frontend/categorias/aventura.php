@@ -164,8 +164,6 @@ $banco = new Banco;
 
   <!-- info section -->
 
-  <?php include_once('..\footer.php'); ?>
-
   <!-- end info section -->
 
   <!-- footer section -->
@@ -191,5 +189,6 @@ $banco = new Banco;
   <!-- End Google Map -->
 
 </body>
+<?php include_once('..\footer.php'); ?>
 
 </html>

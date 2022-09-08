@@ -61,6 +61,7 @@ $banco = new Banco;
             {
             $path=$row['filename'];
             $target="carrinho.php?ID=".$descricao."&";
+            if (isset($_SESSION["usuario_id"])){
 echo '
   <div class="container-fluid" id="books">
     <div class="row">
@@ -104,8 +105,51 @@ Qtd. de Páginas:  '.$row["paginas"].' <hr>
  
            
             }
+            else{
+              echo '
+  <div class="container-fluid" id="books">
+    <div class="row">
+      <div class="col-sm-10 col-md-6">
+                         <img class="center-block img-responsive" src="'.$path.'" height="550px" style="padding:20px;">
+      </div>
+      <div class="col-sm-10 col-md-4 col-md-offset-1">
+        <h2> '. $row["nome"] . '</h2>
+                                <span style="color:#00B9F5;">
+                                 '.$row["autor"].'
+                                </span>
+        <hr>            
+                               
+                                    R$ '.$row["preco"] .' <br>
+                               ';
+                               
+echo'                          
+ 
+      </div>
+    </div>
+          </div>
+          
+     ';
+echo '
+<div class="container-fluid row" id="description">
+<h2> Descrição </h2> 
+      <div class="container row direita">
+                  <p>'.$row['descricao'] .'</p>
+                  <pre style="background:inherit;border:none;">
+                  </div>
+                  <div class="itens">
+Id do produto:    '.$row["id"].'   <hr> 
+Titulo:           '.$row["nome"].' <hr> 
+Autor:            '.$row["autor"].' <hr>
+Idioma Original:  '.$row["idioma"].' <hr>
+Qtd. de Páginas:  '.$row["paginas"].' <hr>
+                  </pre>
+          </div
+</div>
+';
+            }
         }
     echo '</div>';
+      }
     ?>
         </div>
       </div>

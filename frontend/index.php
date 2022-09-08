@@ -268,13 +268,15 @@
               </h2>
             </div>
             <p>
-              mudar dps
+            Loja de vendas e Revendas de livros!
             </p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+
 
   <!-- end about section -->
   <!-- info section -->

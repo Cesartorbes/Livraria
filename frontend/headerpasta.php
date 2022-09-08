@@ -34,10 +34,16 @@ if(isset($_SESSION['usuario_id']))
             <a class="nav-link" href="../categories.php">Categorias</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../destroy.php"> Olá ' .$row['nome']. '</a>
+            <a class="nav-link"> Olá ' .$row['nome']. '</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../destroy.php"> Deslogar</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../carrinho.php">Carrinho</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../usuarios.php">Cadastro de usuários</a>
           </li>
         </ul>
         <from class="search_form">

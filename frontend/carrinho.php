@@ -22,7 +22,7 @@ $banco = new Banco;
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Home</title>
+  <title>Carrinho</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -46,15 +46,42 @@ $banco = new Banco;
 <?php
   $usuario=$_SESSION['usuario_id'];
 
+  if(isset($_GET['place']))
+  {  
+     $query="DELETE FROM carrinho where usuario='$usuario'";
+     $result=mysqli_query($connection,$query);
+     echo "<html>
+     <body>
+     <script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+  
+     <script>
+         Swal.fire({
+             icon: 'success',
+             title: 'Compra realizada',
+             text: 'A sua compra foi cadastrada!'
+         }).then(function() {
+             window.location = 'carrinho.php';
+         });
+     </script></body></html>";                
+   }
+
 if(isset($_GET['remove']))
 {  $produto=$_GET['remove'];
    $query="DELETE FROM carrinho where usuario='$usuario' AND produto_id='$produto'";
    $result=mysqli_query($connection,$query);
-?>
-   <script type="text/javascript">
-        alert("Item Successfully Removed");
-   </script>
-<?php                  
+   echo "<html>
+   <body>
+   <script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+
+   <script>
+       Swal.fire({
+           icon: 'success',
+           title: 'Item retirado',
+           text: 'O seu pedido foi retirado do carrinho!'
+       }).then(function() {
+           window.location = 'carrinho.php';
+       });
+   </script></body></html>";                
  } 
  ?>
  <section class="catagory_section layout_padding">
@@ -138,7 +165,7 @@ if(isset($_GET['remove']))
                                   <a href="categories.php" class="btn btn-lg btn-outline-secondary" style="bg-light;color:dark;font-weight:800;float:right; white-space: nowrap;">Continuar comprando</a>
                              </div>
                              <div class="col-3">
-                                  <a href="carrinho.php?place=true" class="btn btn-lg btn-outline-secondary" style="bg-light;color:dark;font-weight:800; white-space: nowrap;">Finalizar compra</a>
+                                  <a href="pagamento.php" class="btn btn-lg btn-outline-secondary" style="bg-light;color:dark;font-weight:800; white-space: nowrap;">Finalizar compra</a>
                              </div>
                            </div>
                            ';

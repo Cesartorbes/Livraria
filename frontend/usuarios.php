@@ -8,7 +8,7 @@ include_once(__DIR__ . '..\..\backend\conecta.php');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
 <script type="text/javascript">
-    $("#telefone").mask("(00) 00000-0000");
+    $("#telefone").mask("(00) 0000-0000");
 </script>
 
 <head>
@@ -23,7 +23,7 @@ include_once(__DIR__ . '..\..\backend\conecta.php');
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Cadastro de usuário</title>
+  <title>Cadastro de funcionários</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -59,14 +59,14 @@ include_once(__DIR__ . '..\..\backend\conecta.php');
                                         <div class="card-header">
                                             <h3 class="text-center font-weight-light my-4"></h3>
                                         </div>
-                                        <h3 class="text-center font-weight-light my-4">Cadastro</h3>
+                                        <h3 class="text-center font-weight-light my-4">Cadastro de funcionário</h3>
                                         <div class="card-body">
                                             <form method="post" name="registration" action="../backend/inserir.php">
                                                 <div class="form-floating mb-3">
                                                     <label for="nome">Nome:</label>
-                                                    <input type="hidden" value="2" name="registro" id="registro">
+                                                    <input type="hidden" value="1" name="registro" id="registro">
                                                     <input class="form-control" id="nome" type="text" name="nome"
-                                                        placeholder="Insira seu nome" required />
+                                                        placeholder="Insira o nome do funcionário" required />
                                                 </div>
                                                 <div class="form-floating mb-3">
                                                     <label for="inputEmail">E-mail:</label>
@@ -76,19 +76,19 @@ include_once(__DIR__ . '..\..\backend\conecta.php');
                                                 <div class="form-floating mb-3">
                                                     <label for="telefone">Telefone:</label>
                                                     <input class="form-control" id="telefone" type="text" name="telefone"
-                                                        placeholder="Insira o seu telefone" required/>
+                                                        placeholder="Insira o telefone do funcionário" required/>
                                                 </div>
                                                 <div class="form-floating mb-3">
                                                     <label for="cidade">Cidade:</label>
                                                     <input class="form-control" id="cidade" type="text" name="cidade"
-                                                        placeholder="Insira o sua cidade" required/>
+                                                        placeholder="Insira a cidade do funcionário" required/>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <div class="col-md-6">
                                                         <label for="senha">Senha:</label>
                                                         <div class="form-floating mb-3 mb-md-0">
                                                             <input class="form-control" type="password"
-                                                                placeholder="Crie uma Senha" name="senha" id="senha" required/>
+                                                                placeholder="Crie uma senha para o funcionário" name="senha" id="senha" required/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -100,6 +100,11 @@ include_once(__DIR__ . '..\..\backend\conecta.php');
                                                         </div>
                                                     </div>
                                                 </div>  
+                                                <div class="form-floating mb-3">
+                                                    <label for="numero">Código do funcionário:</label>
+                                                    <input class="form-control" id="numero" type="number" name="numero"
+                                                        placeholder="Insira o código do funcionário" required/>
+                                                </div>
                                                 <div class="mt-4 mb-0">
                                                     <div class="d-grid">
                                                         <button type="submit" name="submit" class="btn btn-primary btn-block">Criar Conta</button></div>

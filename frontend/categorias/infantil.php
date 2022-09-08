@@ -65,7 +65,7 @@ $banco = new Banco;
     if(isset($_POST['sort']))
     {
         if($_POST['sort']=="preco")
-                {   $query = "SELECT * FROM livros WHERE categoria='historia' ORDER BY preco";
+                {   $query = "SELECT * FROM livros WHERE categoria='infantil' ORDER BY preco";
                     $result = mysqli_query ($connection,$query)or die(mysqli_error($connection));
                     ?>
                        <script type="text/javascript">
@@ -75,12 +75,12 @@ $banco = new Banco;
                 }
         else
         if($_POST['sort']=="precoh")
-                {   $query = "SELECT * FROM livros WHERE categoria='historia' ORDER BY preco DESC";
+                {   $query = "SELECT * FROM livros WHERE categoria='infantil' ORDER BY preco DESC";
                     $result = mysqli_query ($connection,$query)or die(mysqli_error($connection));
                 }
     } 
     else   
-            {   $query = "SELECT * FROM livros WHERE categoria='historia'";
+            {   $query = "SELECT * FROM livros WHERE categoria='infantil'";
                 $result = mysqli_query ($connection,$query)or die(mysqli_error($connection));
             } 
     $i=0;
