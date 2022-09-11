@@ -99,17 +99,17 @@ $banco = new Banco;
 
             <div class="mb-3">
               <label for="email">Email </label>
-              <input type="email" class="form-control" id="email" placeholder="fulano@exemplo.com" value="<?php echo $row['email']?>"readonly="readonly">
+              <input type="email" class="form-control" id="email" placeholder="fulano@exemplo.com" value="<?php echo $row['email']?>">
             </div>
 
             <div class="mb-3">
               <label for="endereco">Cidade</label>
-              <input type="text" class="form-control" id="endereco" placeholder="Rua dos bobos, nº 0" required value="<?php echo $row['cidade']?>"readonly="readonly">
+              <input type="text" class="form-control" id="endereco" placeholder="Rua dos bobos, nº 0" required value="<?php echo $row['cidade']?>">
             </div>
 
             <div class="mb-3">
               <label for="telefone">Telefone</label>
-              <input type="text" class="form-control" id="telefone" placeholder="telefone" value="<?php echo $row['telefone']?>"readonly="readonly">
+              <input type="text" class="form-control" id="telefone" placeholder="telefone" value="<?php echo $row['telefone']?>">
             </div>
 
             <h4 class="mb-3">Pagamento</h4>
